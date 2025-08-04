@@ -329,7 +329,10 @@ public class FrmMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_menuNuevoClienteActionPerformed
 
     private void menuGestionarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGestionarClientesActionPerformed
-        // TODO add your handling code here:
+        InterGestionarClientes interGestionarClientes =new InterGestionarClientes();
+        jDesktopPaneMenu.add(interGestionarClientes);
+        interGestionarClientes.setVisible(true);
+        
     }//GEN-LAST:event_menuGestionarClientesActionPerformed
 
     private void menuNuevaCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNuevaCategoriaActionPerformed
