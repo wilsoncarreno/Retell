@@ -1,7 +1,7 @@
 package vista;
 
 import conexion.Conexion;
-import controlador.ControladorCategoria;
+//import controlador.ControladorCategoria;
 import controlador.ControladorProducto;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -15,7 +15,7 @@ import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import modelo.Categoria;
+//import modelo.Categoria;
 import modelo.Producto;
 
 public class InterGestionarProducto extends javax.swing.JInternalFrame {

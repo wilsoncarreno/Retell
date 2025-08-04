@@ -75,8 +75,9 @@ public class InterCategoria extends javax.swing.JInternalFrame {
         jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 220, 20));
 
+        label_walpaper.setBackground(new java.awt.Color(221, 240, 254));
         label_walpaper.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondodefinitivoazulclaro.jpg"))); // NOI18N
-        getContentPane().add(label_walpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 390, 170));
+        getContentPane().add(label_walpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 170));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
