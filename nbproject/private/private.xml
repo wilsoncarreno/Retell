@@ -3,12 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/vista/InterCliente.java</file>
-            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/vista/InterProducto.java</file>
-            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/vista/InterGestionarCategorias.java</file>
-            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/vista/InterGestionarProducto.java</file>
-            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/modelo/Cliente.java</file>
             <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/vista/FrmMenu.java</file>
+            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/vista/InterGestionarClientes.java</file>
+            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/vista/InterCategoria.java</file>
+            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/vista/InterGestionarProducto.java</file>
             <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/controlador/ControladorCliente.java</file>
             <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/controlador/ControladorProducto.java</file>
         </group>
