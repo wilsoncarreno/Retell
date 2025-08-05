@@ -153,6 +153,11 @@ public class InterGestionarClientes extends javax.swing.JInternalFrame {
                 txtNombreMouseEntered(evt);
             }
         });
+        txtCedula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCedulaActionPerformed(evt);
+            }
+        });
         jPanel4.add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 10, 210, 30));
 
         txtNombre.setBackground(new java.awt.Color(221, 240, 254));
@@ -298,7 +303,7 @@ public class InterGestionarClientes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtNombreActionPerformed
 
     private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
-        // TODO add your handling code here:
+        txtTelefono.setBackground(new Color(221, 240, 254)); 
     }//GEN-LAST:event_txtTelefonoActionPerformed
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
@@ -322,9 +327,24 @@ public class InterGestionarClientes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_botonEliminarActionPerformed
 
     private void txtNombreMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombreMouseEntered
-        txtNombre.setBackground(new Color(221, 240, 254)); 
+        txtApellido.setBackground(new Color(221, 240, 254)); 
     }//GEN-LAST:event_txtNombreMouseEntered
 
+    private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCedulaActionPerformed
+    private void txtApellidoEntered(java.awt.event.MouseEvent evt) {                                       
+        txtApellido.setBackground(new Color(221, 240, 254)); 
+    }
+    private void txtTelefonoEntered(java.awt.event.MouseEvent evt) {                                       
+        txtTelefono.setBackground(new Color(221, 240, 254)); 
+    }
+    private void txtDireccionMouseEntered(java.awt.event.MouseEvent evt) {                                       
+        txtDireccion.setBackground(new Color(221, 240, 254)); 
+    }
+    private void txtCedulaMouseEntered(java.awt.event.MouseEvent evt) {                                       
+        txtApellido.setBackground(new Color(221, 240, 254)); 
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonActualizar;

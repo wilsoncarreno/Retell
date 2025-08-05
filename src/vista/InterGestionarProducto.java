@@ -21,13 +21,13 @@ import modelo.Producto;
 public class InterGestionarProducto extends javax.swing.JInternalFrame {
 
     private int idProducto;
-    private int obtenerIdCategoriaCombo=0;
+    private int obtenerIdCategoriaCombo = 0;
 
     public InterGestionarProducto() {
         initComponents();
         this.setSize(new Dimension(1155, 639));
         this.setTitle("Gestionar Productos");
-        
+
         this.cargarTablaProducto();
         this.cargarComboCategoria();
 
@@ -146,6 +146,11 @@ public class InterGestionarProducto extends javax.swing.JInternalFrame {
         txtNombre.setForeground(new java.awt.Color(0, 0, 0));
         txtNombre.setBorder(null);
         txtNombre.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtNombre.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtNombreMouseEntered(evt);
+            }
+        });
         txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombreActionPerformed(evt);
@@ -172,6 +177,9 @@ public class InterGestionarProducto extends javax.swing.JInternalFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtCantidadMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtCantidadMouseEntered(evt);
+            }
         });
         jPanel3.add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 180, 30));
         jPanel3.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 40, 170, 10));
@@ -189,6 +197,11 @@ public class InterGestionarProducto extends javax.swing.JInternalFrame {
         txtPrecio.setForeground(new java.awt.Color(0, 0, 0));
         txtPrecio.setBorder(null);
         txtPrecio.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtPrecio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtPrecioMouseEntered(evt);
+            }
+        });
         txtPrecio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPrecioActionPerformed(evt);
@@ -210,6 +223,11 @@ public class InterGestionarProducto extends javax.swing.JInternalFrame {
         txtDescripcion.setForeground(new java.awt.Color(0, 0, 0));
         txtDescripcion.setBorder(null);
         txtDescripcion.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtDescripcion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtDescripcionMouseEntered(evt);
+            }
+        });
         jPanel3.add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 70, 200, 30));
         jPanel3.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 100, 200, 10));
 
@@ -240,6 +258,11 @@ public class InterGestionarProducto extends javax.swing.JInternalFrame {
         txtIva.setForeground(new java.awt.Color(0, 0, 0));
         txtIva.setBorder(null);
         txtIva.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtIva.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtIvaMouseEntered(evt);
+            }
+        });
         jPanel3.add(txtIva, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 30, 50, 30));
         jPanel3.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 60, 80, 10));
 
@@ -260,10 +283,8 @@ public class InterGestionarProducto extends javax.swing.JInternalFrame {
         Producto producto = new Producto();
         ControladorProducto controlProducto = new ControladorProducto();
         String categoria = jComboBoxCategoria.getSelectedItem().toString().trim();
-        int iva=0;
+        int iva = 0;
 
-        
-        
         if (txtNombre.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Complete el campo:nombre del producto");
             txtNombre.setBackground(Color.RED);
@@ -284,28 +305,28 @@ public class InterGestionarProducto extends javax.swing.JInternalFrame {
             txtPrecio.requestFocus();
             return;
         }
-        if(txtIva.getText().trim().isEmpty()){
+        if (txtIva.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Debe ingresar el valor del IVA del producto");
             txtIva.setBackground(Color.RED);
             txtIva.requestFocus();
             return;
-        }else {
-            try{
-                iva=Integer.parseInt(txtIva.getText().trim());
-                if(iva<0){
+        } else {
+            try {
+                iva = Integer.parseInt(txtIva.getText().trim());
+                if (iva < 0) {
                     JOptionPane.showInternalMessageDialog(null, "El valor del IVA no puede ser menor a ¡¡¡CERO!!! (0)");
                     txtIva.setBackground(Color.RED);
                     txtIva.requestFocus();
                     return;
                 }
-            }catch(NumberFormatException e){
-                 JOptionPane.showMessageDialog(null, "El valor del IVA debe ser un número entero");
-                 txtIva.setBackground(Color.RED);
-                 txtIva.requestFocus();
-                 return;
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "El valor del IVA debe ser un número entero");
+                txtIva.setBackground(Color.RED);
+                txtIva.requestFocus();
+                return;
             }
         }
-        
+
         if (categoria.equalsIgnoreCase("Seleccione Categoria:")) {
             JOptionPane.showMessageDialog(null, "Debe seleccionar una categoría");
             jComboBoxCategoria.requestFocus();
@@ -354,7 +375,6 @@ public class InterGestionarProducto extends javax.swing.JInternalFrame {
 //            txtNombre.requestFocus();
 //            return;
 //        }
-
         try {
             // Establecer detalles del producto
             producto.setNombre(txtNombre.getText().trim());
@@ -368,7 +388,7 @@ public class InterGestionarProducto extends javax.swing.JInternalFrame {
             producto.setEstado(1);
 
             //Guardar Producto
-            if (controlProducto.actualizar(producto,idProducto)) {
+            if (controlProducto.actualizar(producto, idProducto)) {
                 JOptionPane.showMessageDialog(null, "Registro actualizado");
                 //jComboBoxIva.setSelectedItem("Seleccione IVA:");
                 this.cargarTablaProducto();
@@ -395,7 +415,7 @@ public class InterGestionarProducto extends javax.swing.JInternalFrame {
                     this.cargarTablaProducto();
                     this.cargarComboCategoria();
                     this.Limpiar();
-                    
+
                 } else {
                     JOptionPane.showMessageDialog(null, "Error al Eliminar el Producto");
                 }
@@ -416,6 +436,27 @@ public class InterGestionarProducto extends javax.swing.JInternalFrame {
     private void txtCantidadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCantidadMouseClicked
         JOptionPane.showMessageDialog(null, "La cantidad no se puede modificar, dirijase a  Producto -> Actualizar Stock");
     }//GEN-LAST:event_txtCantidadMouseClicked
+
+    private void txtNombreMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombreMouseEntered
+        txtNombre.setBackground(new Color(221, 240, 254));
+
+    }//GEN-LAST:event_txtNombreMouseEntered
+
+    private void txtCantidadMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCantidadMouseEntered
+        txtCantidad.setBackground(new Color(221, 240, 254));
+    }//GEN-LAST:event_txtCantidadMouseEntered
+
+    private void txtPrecioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPrecioMouseEntered
+        txtPrecio.setBackground(new Color(221, 240, 254));
+    }//GEN-LAST:event_txtPrecioMouseEntered
+
+    private void txtDescripcionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDescripcionMouseEntered
+        txtDescripcion.setBackground(new Color(221, 240, 254));
+    }//GEN-LAST:event_txtDescripcionMouseEntered
+
+    private void txtIvaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtIvaMouseEntered
+        txtIva.setBackground(new Color(221, 240, 254));
+    }//GEN-LAST:event_txtIvaMouseEntered
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -609,24 +650,24 @@ public class InterGestionarProducto extends javax.swing.JInternalFrame {
         jComboBoxCategoria.setSelectedItem("Seleccione Categoria:");
 
     }
+
     /*
     metodo para obtener el  idctegoria
-    */
-        private int IdCategoria(){
-          String sql="select * from tb_categoria where descripcion ='"+this.jComboBoxCategoria.getSelectedItem()+"'";
-          Statement st;
-          try{
-              Connection cn=conexion.Conexion.conectar();
-              st=cn.createStatement();
-              ResultSet rs=st.executeQuery(sql);
-              while(rs.next()){
-                  obtenerIdCategoriaCombo=rs.getInt("idCategoria");
-              }
-          }catch(SQLException e){
-              System.out.println("Error al obtener el idCategoria");
-          }
-          return obtenerIdCategoriaCombo;
+     */
+    private int IdCategoria() {
+        String sql = "select * from tb_categoria where descripcion ='" + this.jComboBoxCategoria.getSelectedItem() + "'";
+        Statement st;
+        try {
+            Connection cn = conexion.Conexion.conectar();
+            st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                obtenerIdCategoriaCombo = rs.getInt("idCategoria");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al obtener el idCategoria");
         }
-
+        return obtenerIdCategoriaCombo;
+    }
 
 }
