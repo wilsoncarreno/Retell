@@ -1,6 +1,11 @@
 package vista;
 
+import conexion.Conexion;
+import controlador.ControladorCliente;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.SQLException;
@@ -9,8 +14,10 @@ import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import modelo.Cliente;
 
 public class InterGestionarClientes extends javax.swing.JInternalFrame {
+    private int idCliente;
 
     public InterGestionarClientes() {
         initComponents();
@@ -130,18 +137,38 @@ public class InterGestionarClientes extends javax.swing.JInternalFrame {
         txtApellido.setFont(new java.awt.Font("Roboto Condensed", 0, 18)); // NOI18N
         txtApellido.setForeground(new java.awt.Color(51, 51, 51));
         txtApellido.setBorder(null);
+        txtApellido.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtNombreMouseEntered(evt);
+            }
+        });
         jPanel4.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 10, 210, 30));
 
         txtCedula.setBackground(new java.awt.Color(221, 240, 254));
         txtCedula.setFont(new java.awt.Font("Roboto Condensed", 0, 18)); // NOI18N
         txtCedula.setForeground(new java.awt.Color(51, 51, 51));
         txtCedula.setBorder(null);
+        txtCedula.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtNombreMouseEntered(evt);
+            }
+        });
+        txtCedula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCedulaActionPerformed(evt);
+            }
+        });
         jPanel4.add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 10, 210, 30));
 
         txtNombre.setBackground(new java.awt.Color(221, 240, 254));
         txtNombre.setFont(new java.awt.Font("Roboto Condensed", 0, 18)); // NOI18N
         txtNombre.setForeground(new java.awt.Color(51, 51, 51));
         txtNombre.setBorder(null);
+        txtNombre.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtNombreMouseEntered(evt);
+            }
+        });
         txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombreActionPerformed(evt);
@@ -153,6 +180,11 @@ public class InterGestionarClientes extends javax.swing.JInternalFrame {
         txtTelefono.setFont(new java.awt.Font("Roboto Condensed", 0, 18)); // NOI18N
         txtTelefono.setForeground(new java.awt.Color(51, 51, 51));
         txtTelefono.setBorder(null);
+        txtTelefono.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtNombreMouseEntered(evt);
+            }
+        });
         txtTelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTelefonoActionPerformed(evt);
@@ -164,6 +196,11 @@ public class InterGestionarClientes extends javax.swing.JInternalFrame {
         txtDireccion.setFont(new java.awt.Font("Roboto Condensed", 0, 18)); // NOI18N
         txtDireccion.setForeground(new java.awt.Color(51, 51, 51));
         txtDireccion.setBorder(null);
+        txtDireccion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtNombreMouseEntered(evt);
+            }
+        });
         jPanel4.add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, 210, 30));
         jPanel4.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 40, 210, 30));
         jPanel4.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 210, 30));
@@ -176,6 +213,11 @@ public class InterGestionarClientes extends javax.swing.JInternalFrame {
         botonEliminar.setForeground(new java.awt.Color(0, 0, 0));
         botonEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eliminar..png"))); // NOI18N
         botonEliminar.setText("Eliminar");
+        botonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminarActionPerformed(evt);
+            }
+        });
         jPanel4.add(botonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 150, 120, 40));
 
         botonActualizar.setBackground(new java.awt.Color(0, 153, 255));
@@ -199,7 +241,61 @@ public class InterGestionarClientes extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarActionPerformed
-        // TODO add your handling code here:
+        Cliente cliente = new Cliente();
+        ControladorCliente controlcliente = new ControladorCliente();
+        
+
+        
+        
+        if (txtNombre.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Complete el campo:nombre del Cliente");
+            txtNombre.setBackground(Color.RED);
+            txtNombre.requestFocus();
+            return;
+        }
+
+        if (txtApellido.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar el Apellido del Cliente");
+            txtApellido.setBackground(Color.RED);
+            txtApellido.requestFocus();
+            return;
+        }
+
+        if (txtCedula.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar el numero de Cedula");
+            txtCedula.setBackground(Color.RED);
+            txtCedula.requestFocus();
+            return;
+        }
+        if(txtTelefono.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe ingresar el numero del contacto telefonico");
+            txtTelefono.setBackground(Color.RED);
+            txtTelefono.requestFocus();
+            return;
+        }
+        
+        try {
+            // Establecer detalles del producto
+            cliente.setNombre(txtNombre.getText().trim());
+            cliente.setApellido(txtApellido.getText().trim());
+            cliente.setCedula(txtCedula.getText().trim());
+            cliente.setTelefono(txtTelefono.getText().trim());
+            cliente.setDireccion(txtDireccion.getText().trim());
+            cliente.setEstado(1);
+            
+            
+            //Guardar Producto
+            if (controlcliente.actualizar(cliente,idCliente)) {
+                JOptionPane.showMessageDialog(null, "Registro actualizado");
+                this.cargarTablaClientes();
+                this.limpiar();
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al guardar el Cliente");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Ocurrió un error al guardar el producto: " + e.getMessage());
+        }
+
     }//GEN-LAST:event_botonActualizarActionPerformed
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
@@ -207,9 +303,48 @@ public class InterGestionarClientes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtNombreActionPerformed
 
     private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
-        // TODO add your handling code here:
+        txtTelefono.setBackground(new Color(221, 240, 254)); 
     }//GEN-LAST:event_txtTelefonoActionPerformed
 
+    private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
+        ControladorCliente controlProducto = new ControladorCliente();
+        if (idCliente == 0) {
+            JOptionPane.showMessageDialog(null, "Seleccione un Cliente");
+            return;
+        } else {
+            int confirm = JOptionPane.showConfirmDialog(null, "¿Está seguro de eliminar el Cliente?", "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
+            if (confirm == JOptionPane.YES_OPTION) {
+                if (controlProducto.eliminar(idCliente)) {
+                    JOptionPane.showMessageDialog(null, "Cliente Eliminado");
+                    this.cargarTablaClientes();
+                    this.limpiar();
+                    
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error al Eliminar el Cliente");
+                }
+            }
+        }
+    }//GEN-LAST:event_botonEliminarActionPerformed
+
+    private void txtNombreMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombreMouseEntered
+        txtApellido.setBackground(new Color(221, 240, 254)); 
+    }//GEN-LAST:event_txtNombreMouseEntered
+
+    private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCedulaActionPerformed
+    private void txtApellidoEntered(java.awt.event.MouseEvent evt) {                                       
+        txtApellido.setBackground(new Color(221, 240, 254)); 
+    }
+    private void txtTelefonoEntered(java.awt.event.MouseEvent evt) {                                       
+        txtTelefono.setBackground(new Color(221, 240, 254)); 
+    }
+    private void txtDireccionMouseEntered(java.awt.event.MouseEvent evt) {                                       
+        txtDireccion.setBackground(new Color(221, 240, 254)); 
+    }
+    private void txtCedulaMouseEntered(java.awt.event.MouseEvent evt) {                                       
+        txtApellido.setBackground(new Color(221, 240, 254)); 
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonActualizar;
@@ -260,11 +395,24 @@ public class InterGestionarClientes extends javax.swing.JInternalFrame {
                 }
                model.addRow(fila); 
             }
-
+            con.close();
         } catch (SQLException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Error al llenar la tabla clientes "+e);
         }
+        InterGestionarClientes.tablaClientes.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int filaPoint = InterGestionarClientes.tablaClientes.rowAtPoint(e.getPoint());
+                int columnaPoint = 0;
+                if (filaPoint > -1) {
+                    idCliente = (int) model.getValueAt(filaPoint, columnaPoint);
+                    EnviarDatosClienteSeleccionado(idCliente);
+                }
+
+            }
+        });
     }
 
     private void limpiar() {
@@ -273,6 +421,30 @@ public class InterGestionarClientes extends javax.swing.JInternalFrame {
         txtTelefono.setText("");
         txtDireccion.setText("");
         txtCedula.setText("");
+    }
+    
+    
+    public void EnviarDatosClienteSeleccionado(int idCliente) {
+        try {
+            Connection con = Conexion.conectar();
+            PreparedStatement pst = con.prepareStatement(
+                    "select * from tb_cliente where idCliente= '" + idCliente + "'");
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                txtNombre.setText(rs.getString("nombre"));
+                txtApellido.setText(rs.getString("apellido"));
+                txtCedula.setText(rs.getString("cedula"));
+                txtTelefono.setText(rs.getString("telefono"));
+                txtDireccion.setText(rs.getString("direccion"));
+                
+                
+                
+
+            }
+            con.close();
+        } catch (SQLException e) {
+            System.out.println("Error al seleccionar producto" + e.getMessage());
+        }
     }
 
 }

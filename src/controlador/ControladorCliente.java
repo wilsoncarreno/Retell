@@ -52,4 +52,50 @@ public class ControladorCliente {
         return respuesta;
         
     }
+    
+    //metodo actualizar
+    public boolean actualizar(Cliente objeto, int idCliente) {
+        boolean respuesta = false;
+        Connection cn = conexion.Conexion.conectar();
+        try {
+            PreparedStatement consulta = cn.prepareStatement("update tb_cliente set nombre=?, apellido=?, cedula=?, telefono=?, direccion=?, estado=? where idCliente ='"+idCliente+"';");
+            
+            consulta.setString(1, objeto.getNombre());
+            consulta.setString(2, objeto.getApellido());
+            consulta.setString(3,objeto.getCedula());
+            consulta.setString(4, objeto.getTelefono());
+            consulta.setString(5, objeto.getDireccion());
+            consulta.setInt(6, objeto.getEstado());
+            
+            if (consulta.executeUpdate() > 0) {
+                respuesta = true;
+            }
+            cn.close();
+
+        } catch (SQLException e) {
+            System.out.println("error al actualizar el Cliente:  " + e);
+        }
+        return respuesta;
+    }
+    //metodo Eliminar
+    public boolean eliminar( int idCliente) {
+        boolean respuesta = false;
+        Connection cn = conexion.Conexion.conectar();
+        PreparedStatement consulta=null;
+        try {
+            consulta = cn.prepareStatement("delete from tb_Cliente where idCliente = ?");
+            
+            consulta.setInt(1, idCliente);
+            int filasAfectadas=consulta.executeUpdate();
+            
+            if (filasAfectadas > 0) {
+                respuesta = true;
+            }
+            cn.close();
+
+        } catch (SQLException e) {
+            System.out.println("Error al eliminar el Cliente :  " + e.getMessage());
+        }
+        return respuesta;
+    }
 }
