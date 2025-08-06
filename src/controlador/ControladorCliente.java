@@ -37,7 +37,7 @@ public class ControladorCliente {
     // metodo para vrificar si el cliente existe
     public boolean ExisteCliente(String cliente){
         boolean respuesta=false;
-        String sql="SELECT nombre FROM tb_cliente WHERE nombre= '"+cliente+"';";
+        String sql="SELECT cedula FROM tb_cliente WHERE cedula= '"+cliente+"';";
         Statement st;
         try{
             Connection cn=conexion.Conexion.conectar();

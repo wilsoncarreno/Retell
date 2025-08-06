@@ -20,6 +20,7 @@ public class InterActualizarStock extends javax.swing.JInternalFrame {
     public InterActualizarStock() {
         initComponents();
         this.setTitle("Actualizar Stock de Productos");
+        this.setSize(516, 494);
         this.cargarComboProducto();
     }
 
