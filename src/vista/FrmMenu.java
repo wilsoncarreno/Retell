@@ -6,30 +6,27 @@ package vista;
 
 import java.awt.Dimension;
 import javax.swing.JDesktopPane;
+import java.sql.Connection;
 
-/**
- *
- * @author DELL
- */
+ 
 public class FrmMenu extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmMenu.class.getName());
 
     public static JDesktopPane jDesktopPaneMenu;
-    
-    
+
     public FrmMenu() {
         initComponents();
-        this.setSize(new Dimension(1200,700));
+        this.setSize(new Dimension(1200, 700));
         this.setExtendedState(this.MAXIMIZED_BOTH);
         this.setLocationRelativeTo(null);
         this.setTitle(" Menu Retell");
-        
+
         this.setLayout(null);
-        jDesktopPaneMenu= new JDesktopPane();
-        int ancho=java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
-        int alto=java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
-        this.jDesktopPaneMenu.setBounds(0,0,ancho,(alto-110));
+        jDesktopPaneMenu = new JDesktopPane();
+        int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
+        int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
+        this.jDesktopPaneMenu.setBounds(0, 0, ancho, (alto - 110));
         this.add(jDesktopPaneMenu);
     }
 
@@ -164,6 +161,11 @@ public class FrmMenu extends javax.swing.JFrame {
         menuActualizarStock.setFont(new java.awt.Font("Roboto Condensed", 0, 14)); // NOI18N
         menuActualizarStock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/stock.png"))); // NOI18N
         menuActualizarStock.setText("Actualizar Stock");
+        menuActualizarStock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuActualizarStockActionPerformed(evt);
+            }
+        });
         jMenu2.add(menuActualizarStock);
 
         jMenuBar1.add(jMenu2);
@@ -309,19 +311,19 @@ public class FrmMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuNuevoProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNuevoProductoActionPerformed
-        InterProducto interProducto= new InterProducto();
+        InterProducto interProducto = new InterProducto();
         jDesktopPaneMenu.add(interProducto);
         interProducto.setVisible(true);
     }//GEN-LAST:event_menuNuevoProductoActionPerformed
 
     private void menuGestionarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGestionarProductosActionPerformed
-        InterGestionarProducto interGestionarProducto= new InterGestionarProducto();
+        InterGestionarProducto interGestionarProducto = new InterGestionarProducto();
         jDesktopPaneMenu.add(interGestionarProducto);
         interGestionarProducto.setVisible(true);
     }//GEN-LAST:event_menuGestionarProductosActionPerformed
 
     private void menuNuevoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNuevoClienteActionPerformed
-        InterCliente interCliente =new InterCliente();
+        InterCliente interCliente = new InterCliente();
         jDesktopPaneMenu.add(interCliente);
         interCliente.setVisible(true);
 
@@ -329,23 +331,23 @@ public class FrmMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_menuNuevoClienteActionPerformed
 
     private void menuGestionarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGestionarClientesActionPerformed
-        InterGestionarClientes interGestionarClientes =new InterGestionarClientes();
+        InterGestionarClientes interGestionarClientes = new InterGestionarClientes();
         jDesktopPaneMenu.add(interGestionarClientes);
         interGestionarClientes.setVisible(true);
-        
+
     }//GEN-LAST:event_menuGestionarClientesActionPerformed
 
     private void menuNuevaCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNuevaCategoriaActionPerformed
-        InterCategoria interCategoria= new InterCategoria();
+        InterCategoria interCategoria = new InterCategoria();
         jDesktopPaneMenu.add(interCategoria);
         interCategoria.setVisible(true);
     }//GEN-LAST:event_menuNuevaCategoriaActionPerformed
 
     private void menuGestionCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGestionCategoriaActionPerformed
-        InterGestionarCategorias interGestionarCategoria= new InterGestionarCategorias(); 
+        InterGestionarCategorias interGestionarCategoria = new InterGestionarCategorias();
         jDesktopPaneMenu.add(interGestionarCategoria);
         interGestionarCategoria.setVisible(true);
-        
+
     }//GEN-LAST:event_menuGestionCategoriaActionPerformed
 
     private void menuReporteProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuReporteProductosActionPerformed
@@ -355,6 +357,12 @@ public class FrmMenu extends javax.swing.JFrame {
     private void menuGestionarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGestionarUsuariosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_menuGestionarUsuariosActionPerformed
+
+    private void menuActualizarStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuActualizarStockActionPerformed
+        InterActualizarStock interActuaizarStock = new InterActualizarStock();
+        jDesktopPaneMenu.add(interActuaizarStock);
+        interActuaizarStock.setVisible(true);
+    }//GEN-LAST:event_menuActualizarStockActionPerformed
 
     /**
      * @param args the command line arguments
@@ -416,4 +424,7 @@ public class FrmMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuReporteVentas;
     private javax.swing.JMenuItem menuVerHistorial;
     // End of variables declaration//GEN-END:variables
+    
+    
+
 }

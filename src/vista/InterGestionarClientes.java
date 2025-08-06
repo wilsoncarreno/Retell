@@ -327,11 +327,11 @@ public class InterGestionarClientes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_botonEliminarActionPerformed
 
     private void txtNombreMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombreMouseEntered
-        txtApellido.setBackground(new Color(221, 240, 254)); 
+        txtNombre.setBackground(new Color(221, 240, 254)); 
     }//GEN-LAST:event_txtNombreMouseEntered
 
     private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
-        // TODO add your handling code here:
+        txtCedula.setBackground(new Color(221, 240, 254));
     }//GEN-LAST:event_txtCedulaActionPerformed
     private void txtApellidoEntered(java.awt.event.MouseEvent evt) {                                       
         txtApellido.setBackground(new Color(221, 240, 254)); 

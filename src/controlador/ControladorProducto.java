@@ -106,6 +106,28 @@ public class ControladorProducto {
         }
         return respuesta;
     }
+    //metodo de actualizar el stock de producto.
+    public boolean actualizarStock(Producto producto, int idProducto) {
+        boolean respuesta = false;
+        Connection cn = conexion.Conexion.conectar();
+        PreparedStatement consulta=null;
+        try {
+            consulta = cn.prepareStatement("update  tb_producto set cantidad=? where idProducto = '"+idProducto+"';");
+            
+            consulta.setInt(1, producto.getCantidad());
+            int filasAfectadas=consulta.executeUpdate();
+            
+            if (filasAfectadas > 0) {
+                respuesta = true;
+            }
+            cn.close();
+
+        } catch (SQLException e) {
+            System.out.println("Error al Actualizar el producto:  " + e.getMessage());
+        }
+        return respuesta;
+    }
+    
     
     
 }

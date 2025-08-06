@@ -504,7 +504,7 @@ public class InterGestionarProducto extends javax.swing.JInternalFrame {
             cn.close();
 
         } catch (SQLException e) {
-            System.out.println("Error al cargar categorias " + e.getMessage());
+            System.out.println("Error al cargar productos " + e.getMessage());
         }
 
     }
@@ -516,64 +516,147 @@ public class InterGestionarProducto extends javax.swing.JInternalFrame {
     double IVA = 0;
 
     private void cargarTablaProducto() {
-        Connection con = Conexion.conectar();
-        DefaultTableModel model = new DefaultTableModel();
-        String sql = "select p.idProducto, p.nombre, p.cantidad, p.precio, p.descripcion, p.porcentajeIva, c.descripcion, p.estado from tb_producto As p, tb_categoria As c where p.idCategoria=c.idCategoria;";
-        Statement st;
+        Connection con = null;
+        Statement st = null;
+        ResultSet rs = null;
+
+        // Obtener el modelo existente de la tabla
+        DefaultTableModel model = (DefaultTableModel) InterGestionarProducto.jTableProductos.getModel();
+
+        // Limpiar filas y columnas existentes
+        model.setRowCount(0);
+        model.setColumnCount(0);
+
+        // Definir las columnas
+        model.addColumn("N°"); // idProducto
+        model.addColumn("Nombre");
+        model.addColumn("Cantidad");
+        model.addColumn("Precio");
+        model.addColumn("Descripción");
+        model.addColumn("IVA");
+        model.addColumn("Categoría");
+        model.addColumn("Estado");
+
+        String sql = "SELECT p.idProducto, p.nombre, p.cantidad, p.precio, p.descripcion, p.porcentajeIva, c.descripcion AS categoria, p.estado "
+                + "FROM tb_producto AS p "
+                + "INNER JOIN tb_categoria AS c ON p.idCategoria = c.idCategoria";
+
         try {
+            con = Conexion.conectar();
+            if (con == null) {
+                JOptionPane.showMessageDialog(null, "Error: No se pudo conectar a la base de datos");
+                return;
+            }
 
             st = con.createStatement();
-            ResultSet rs = st.executeQuery(sql);
-            InterGestionarProducto.jTableProductos = new JTable(model);
-            InterGestionarProducto.jScrollPane1.setViewportView(InterGestionarProducto.jTableProductos);
-
-            model.addColumn("N°");//idProducto
-            model.addColumn("Nombre");
-            model.addColumn("Cantidad");
-            model.addColumn("Precio");
-            model.addColumn("Descripcion");
-            model.addColumn("IVA");
-            model.addColumn("Categoria");
-            model.addColumn("estado");
+            rs = st.executeQuery(sql);
 
             while (rs.next()) {
+                double precio = rs.getDouble("precio");
+                int porcentajeIva = rs.getInt("porcentajeIva");
+                double iva = calcularIva(precio, porcentajeIva);
 
-                precio = rs.getDouble("precio");
-                porcentajeIva = rs.getInt("porcentajeIva");
+                Object[] fila = new Object[8];
+                fila[0] = rs.getInt("idProducto");
+                fila[1] = rs.getString("nombre");
+                fila[2] = rs.getInt("cantidad");
+                fila[3] = String.format("%.2f", rs.getDouble("precio")); // Formatear precio
+                fila[4] = rs.getString("descripcion");
+                fila[5] = String.format("%.2f", iva); // Formatear IVA
+                fila[6] = rs.getString("categoria");
+                fila[7] = rs.getBoolean("estado") ? "Activo" : "Inactivo"; // Convertir estado
 
-                Object fila[] = new Object[8];
-                for (int i = 0; i < 8; i++) {
-                    if (i == 5) {
-                        this.calcularIva(precio, porcentajeIva);
-                        fila[i] = IVA;
-                        rs.getObject(i + 1);
-                    } else {
-                        fila[i] = rs.getObject(i + 1);
-                    }
-
-                }
                 model.addRow(fila);
-
             }
-            con.close();
 
         } catch (SQLException e) {
-            System.out.println("Error al Llenar la Tabla Productos");
-
+            JOptionPane.showMessageDialog(null, "Error al llenar la tabla de productos: " + e.getMessage());
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (st != null) {
+                    st.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                System.err.println("Error al cerrar los recursos: " + e.getMessage());
+            }
         }
-        InterGestionarProducto.jTableProductos.addMouseListener(new MouseAdapter() {
 
+        // Listener para clics en la tabla
+        InterGestionarProducto.jTableProductos.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 int filaPoint = InterGestionarProducto.jTableProductos.rowAtPoint(e.getPoint());
-                int columnaPoint = 0;
                 if (filaPoint > -1) {
-                    idProducto = (int) model.getValueAt(filaPoint, columnaPoint);
+                    idProducto = (int) model.getValueAt(filaPoint, 0);
                     EnviarDatosProductoSeleccionado(idProducto);
                 }
-
             }
         });
+//        Connection con = Conexion.conectar();
+//        DefaultTableModel model = new DefaultTableModel();
+//        String sql = "select p.idProducto, p.nombre, p.cantidad, p.precio, p.descripcion, p.porcentajeIva, c.descripcion, p.estado from tb_producto As p, tb_categoria As c where p.idCategoria=c.idCategoria;";
+//        Statement st;
+//        try {
+//
+//            st = con.createStatement();
+//            ResultSet rs = st.executeQuery(sql);
+//            InterGestionarProducto.jTableProductos = new JTable(model);
+//            InterGestionarProducto.jScrollPane1.setViewportView(InterGestionarProducto.jTableProductos);
+//
+//            model.addColumn("N°");//idProducto
+//            model.addColumn("Nombre");
+//            model.addColumn("Cantidad");
+//            model.addColumn("Precio");
+//            model.addColumn("Descripcion");
+//            model.addColumn("IVA");
+//            model.addColumn("Categoria");
+//            model.addColumn("estado");
+//
+//            while (rs.next()) {
+//
+//                precio = rs.getDouble("precio");
+//                porcentajeIva = rs.getInt("porcentajeIva");
+//
+//                Object fila[] = new Object[8];
+//                for (int i = 0; i < 8; i++) {
+//                    if (i == 5) {
+//                        this.calcularIva(precio, porcentajeIva);
+//                        fila[i] = IVA;
+//                        rs.getObject(i + 1);
+//                    } else {
+//                        fila[i] = rs.getObject(i + 1);
+//                    }
+//
+//                }
+//                model.addRow(fila);
+//
+//            }
+//            con.close();
+//
+//        } catch (SQLException e) {
+//            System.out.println("Error al Llenar la Tabla Productos");
+//
+//        }
+//        InterGestionarProducto.jTableProductos.addMouseListener(new MouseAdapter() {
+//
+//            @Override
+//            public void mouseClicked(MouseEvent e) {
+//                int filaPoint = InterGestionarProducto.jTableProductos.rowAtPoint(e.getPoint());
+//                int columnaPoint = 0;
+//                if (filaPoint > -1) {
+//                    idProducto = (int) model.getValueAt(filaPoint, columnaPoint);
+//                    EnviarDatosProductoSeleccionado(idProducto);
+//                }
+//
+//            }
+//        });
 
     }
     //metodo para calcular iva 
