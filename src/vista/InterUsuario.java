@@ -3,16 +3,21 @@ package vista;
 
 import controlador.ControladorCliente;
 import controlador.ControladorProducto;
+import controlador.ControladorUsuario;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import modelo.Cliente;
+import modelo.Usuario;
 
-public class InterCliente extends javax.swing.JInternalFrame {
+public class InterUsuario extends javax.swing.JInternalFrame {
 
-    public InterCliente() {
+    Usuario usuario=new Usuario();
+    ControladorUsuario controladorUsuario= new ControladorUsuario();
+    
+    public InterUsuario() {
         initComponents();
         this.setSize(420, 535);
-        this.setTitle("Agregar Cliente");
+        this.setTitle("Agregar Usuario");
     }
 
     @SuppressWarnings("unchecked")
@@ -25,20 +30,20 @@ public class InterCliente extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         txtApellido = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
-        txtCedula = new javax.swing.JTextField();
+        txtUsuario = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
         txtTelefono = new javax.swing.JTextField();
         jSeparator4 = new javax.swing.JSeparator();
-        txtDireccion = new javax.swing.JTextField();
         jSeparator5 = new javax.swing.JSeparator();
         botonGuardar = new javax.swing.JButton();
+        txtContrasena = new javax.swing.JPasswordField();
 
         jLabel6.setText("jLabel6");
 
@@ -58,7 +63,7 @@ public class InterCliente extends javax.swing.JInternalFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/nombreetiqueta.png"))); // NOI18N
         jLabel1.setText("Apellido: ");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 110, 50));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 110, 50));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Roboto Condensed", 0, 18)); // NOI18N
@@ -66,15 +71,23 @@ public class InterCliente extends javax.swing.JInternalFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/nombreetiqueta.png"))); // NOI18N
         jLabel2.setText("Nombre: ");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 100, 40));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 100, 50));
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Roboto Condensed", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cedula.png"))); // NOI18N
-        jLabel3.setText("Cedula: ");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 100, 50));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/nuevoe.png"))); // NOI18N
+        jLabel3.setText("Usuario: ");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 100, 50));
+
+        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel5.setFont(new java.awt.Font("Roboto Condensed", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/seguropassword.png"))); // NOI18N
+        jLabel5.setText("Contraseña: ");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 210, 140, 50));
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Roboto Condensed", 0, 18)); // NOI18N
@@ -82,17 +95,9 @@ public class InterCliente extends javax.swing.JInternalFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/directorio-telefonico (1).png"))); // NOI18N
         jLabel4.setText("Telefono: ");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 110, 40));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 110, 40));
 
-        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel5.setFont(new java.awt.Font("Roboto Condensed", 0, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/direcciones (1).png"))); // NOI18N
-        jLabel5.setText("Dirección: ");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 120, 40));
-
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 120, 330));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 130, 330));
 
         jLabel7.setFont(new java.awt.Font("Roboto Condensed Medium", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
@@ -115,10 +120,10 @@ public class InterCliente extends javax.swing.JInternalFrame {
                 txtNombreActionPerformed(evt);
             }
         });
-        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 230, 30));
+        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 230, 30));
 
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 230, 10));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, 230, 10));
 
         txtApellido.setBackground(new java.awt.Color(221, 240, 254));
         txtApellido.setFont(new java.awt.Font("Roboto Condensed", 0, 18)); // NOI18N
@@ -135,30 +140,30 @@ public class InterCliente extends javax.swing.JInternalFrame {
                 txtApellidoActionPerformed(evt);
             }
         });
-        jPanel1.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 230, 30));
+        jPanel1.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 230, 30));
 
         jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, 230, 10));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 230, 10));
 
-        txtCedula.setBackground(new java.awt.Color(221, 240, 254));
-        txtCedula.setFont(new java.awt.Font("Roboto Condensed", 0, 18)); // NOI18N
-        txtCedula.setForeground(new java.awt.Color(0, 0, 0));
-        txtCedula.setBorder(null);
-        txtCedula.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        txtCedula.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtUsuario.setBackground(new java.awt.Color(221, 240, 254));
+        txtUsuario.setFont(new java.awt.Font("Roboto Condensed", 0, 18)); // NOI18N
+        txtUsuario.setForeground(new java.awt.Color(0, 0, 0));
+        txtUsuario.setBorder(null);
+        txtUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                txtCedulaMouseEntered(evt);
+                txtUsuarioMouseEntered(evt);
             }
         });
-        txtCedula.addActionListener(new java.awt.event.ActionListener() {
+        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCedulaActionPerformed(evt);
+                txtUsuarioActionPerformed(evt);
             }
         });
-        jPanel1.add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 230, 30));
+        jPanel1.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, 230, 30));
 
         jSeparator3.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, 230, 10));
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, 230, 10));
 
         txtTelefono.setBackground(new java.awt.Color(221, 240, 254));
         txtTelefono.setFont(new java.awt.Font("Roboto Condensed", 0, 18)); // NOI18N
@@ -175,30 +180,13 @@ public class InterCliente extends javax.swing.JInternalFrame {
                 txtTelefonoActionPerformed(evt);
             }
         });
-        jPanel1.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 280, 230, 30));
+        jPanel1.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 350, 230, 30));
 
         jSeparator4.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, 230, 10));
-
-        txtDireccion.setBackground(new java.awt.Color(221, 240, 254));
-        txtDireccion.setFont(new java.awt.Font("Roboto Condensed", 0, 18)); // NOI18N
-        txtDireccion.setForeground(new java.awt.Color(0, 0, 0));
-        txtDireccion.setBorder(null);
-        txtDireccion.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        txtDireccion.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                txtDireccionMouseEntered(evt);
-            }
-        });
-        txtDireccion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDireccionActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 350, 230, 30));
+        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 230, 10));
 
         jSeparator5.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 380, 230, 10));
+        jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 380, 230, 10));
 
         botonGuardar.setBackground(new java.awt.Color(255, 255, 255));
         botonGuardar.setFont(new java.awt.Font("Roboto Condensed Medium", 0, 14)); // NOI18N
@@ -213,6 +201,16 @@ public class InterCliente extends javax.swing.JInternalFrame {
         });
         jPanel1.add(botonGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 420, -1, -1));
 
+        txtContrasena.setBackground(new java.awt.Color(221, 240, 254));
+        txtContrasena.setForeground(new java.awt.Color(0, 0, 0));
+        txtContrasena.setBorder(null);
+        txtContrasena.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtContrasenaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, 230, 30));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 500));
 
         pack();
@@ -226,59 +224,72 @@ public class InterCliente extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtApellidoActionPerformed
 
-    private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
+    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCedulaActionPerformed
+    }//GEN-LAST:event_txtUsuarioActionPerformed
 
     private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTelefonoActionPerformed
 
-    private void txtDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDireccionActionPerformed
-
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
-        Cliente cliente = new Cliente();
-        ControladorCliente controladorCliente = new ControladorCliente();
 
         if (txtNombre.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Debe Ingresar el Nombre del Cliente");
+            JOptionPane.showMessageDialog(null, "Debe Ingresar el Nombre del Usuario");
             txtNombre.setBackground(Color.red);
             txtNombre.requestFocus();
             return;
         }
         if (txtApellido.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Debe Ingresar el Apellido del Cliente");
+            JOptionPane.showMessageDialog(null, "Debe Ingresar el Apellido del Usurio");
             txtApellido.setBackground(Color.red);
             txtApellido.requestFocus();
             return;
         }
+        if (txtUsuario.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe Ingresar el nombre de usuario");
+            txtUsuario.setBackground(Color.red);
+            txtUsuario.requestFocus();
+            return;
+        }
+        if (txtContrasena.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe Ingresar una contrasena para el usuario");
+            txtContrasena.setBackground(Color.red);
+            txtContrasena.requestFocus();
+            return;
+        }
+        if (txtTelefono.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe Ingresar el numero de telefono");
+            txtTelefono.setBackground(Color.red);
+            txtTelefono.requestFocus();
+            return;
+        }
+        
         //validar si el cliente existe 
-        if (controladorCliente.ExisteCliente(txtCedula.getText().trim())) {
-            JOptionPane.showMessageDialog(null, "El Cliente ya existe en la base de datos");
-            txtCedula.setBackground(Color.RED);
-            txtCedula.requestFocus();
+        if (controladorUsuario.ExisteUsuario(txtUsuario.getText().trim())) {
+            JOptionPane.showMessageDialog(null, "El Usuario ya existe en la base de datos ingrese otro usuario");
+            txtUsuario.setBackground(Color.RED);
+            txtUsuario.requestFocus();
             return;
         }
 
         try {
-            cliente.setNombre(txtNombre.getText().trim());
-            cliente.setApellido(txtApellido.getText().trim());
-            cliente.setCedula(txtCedula.getText().trim());
-            cliente.setTelefono(txtTelefono.getText().trim());
-            cliente.setDireccion(txtDireccion.getText().trim());
-            cliente.setEstado(1);
+            usuario.setNombre(txtNombre.getText().trim());
+            usuario.setApellido(txtApellido.getText().trim());
+            usuario.setUsuario(txtUsuario.getText().trim());
+            usuario.setTelefono(txtTelefono.getText().trim());
+            usuario.setPassword(txtContrasena.getText().trim());
+            usuario.setEstado(1);
             //Guardar Producto
-            if (controladorCliente.Guardar(cliente)) {
-                JOptionPane.showMessageDialog(null, "Cliente Guardado");
+            if (controladorUsuario.Guardar(usuario)) {
+                JOptionPane.showMessageDialog(null, "Usuario Guardado");
                 this.limpiar();
             } else {
-                JOptionPane.showMessageDialog(null, "Error al guardar el Cliente");
+                JOptionPane.showMessageDialog(null, "Error al guardar el Usuario");
             }
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Ocurrió un error al guardar el Cliente: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Ocurrió un error al guardar el Usuario: " + e.getMessage());
         }
 
 
@@ -292,17 +303,17 @@ public class InterCliente extends javax.swing.JInternalFrame {
         txtApellido.setBackground(new Color(221, 240, 254));         // TODO add your handling code here:
     }//GEN-LAST:event_txtApellidoMouseEntered
 
-    private void txtCedulaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCedulaMouseEntered
-        txtCedula.setBackground(new Color(221, 240, 254));
-    }//GEN-LAST:event_txtCedulaMouseEntered
+    private void txtUsuarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsuarioMouseEntered
+        txtUsuario.setBackground(new Color(221, 240, 254));
+    }//GEN-LAST:event_txtUsuarioMouseEntered
 
     private void txtTelefonoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTelefonoMouseEntered
         txtTelefono.setBackground(new Color(221, 240, 254));
     }//GEN-LAST:event_txtTelefonoMouseEntered
 
-    private void txtDireccionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDireccionMouseEntered
-        txtDireccion.setBackground(new Color(221, 240, 254));
-    }//GEN-LAST:event_txtDireccionMouseEntered
+    private void txtContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContrasenaActionPerformed
+        txtUsuario.setBackground(new Color(221, 240, 254));
+    }//GEN-LAST:event_txtContrasenaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -322,17 +333,17 @@ public class InterCliente extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JTextField txtApellido;
-    private javax.swing.JTextField txtCedula;
-    private javax.swing.JTextField txtDireccion;
+    private javax.swing.JPasswordField txtContrasena;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtTelefono;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
     private void limpiar(){
         txtNombre.setText("");
         txtApellido.setText("");
-        txtCedula.setText("");
+        txtUsuario.setText("");
         txtTelefono.setText("");
-        txtDireccion.setText("");
+        
         
     }
 

@@ -5,12 +5,11 @@
         <group>
             <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/vista/FrmMenu.java</file>
             <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/vista/InterActualizarStock.java</file>
-            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/vista/InterCategoria.java</file>
-            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/vista/InterGestionarCategorias.java</file>
-            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/vista/InterGestionarClientes.java</file>
-            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/vista/InterGestionarProducto.java</file>
-            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/controlador/ControladorProducto.java</file>
-            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/vista/InterProducto.java</file>
+            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/vista/InterCliente.java</file>
+            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/vista/InterUsuario.java</file>
+            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/controlador/ControladorCliente.java</file>
+            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/controlador/ControladorUsuario.java</file>
+            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/modelo/Usuario.java</file>
         </group>
     </open-files>
 </project-private>
