@@ -364,7 +364,9 @@ public class FrmMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_menuReporteProductosActionPerformed
 
     private void menuGestionarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGestionarUsuariosActionPerformed
-        // TODO add your handling code here:
+       InterGestionarUsuario interGestionarUsuario = new InterGestionarUsuario();
+        jDesktopPaneMenu.add(interGestionarUsuario);
+        interGestionarUsuario.setVisible(true);
     }//GEN-LAST:event_menuGestionarUsuariosActionPerformed
 
     private void menuActualizarStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuActualizarStockActionPerformed
