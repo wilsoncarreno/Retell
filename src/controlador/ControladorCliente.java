@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 import modelo.Cliente;
 public class ControladorCliente {
     
@@ -25,8 +26,7 @@ public class ControladorCliente {
             if (consulta.executeUpdate()>0){
                 respuesta=true;
             }
-            cn.close();
-            
+            cn.close();            
         }catch(SQLException e){
             System.out.println("error al guardar el producto"+e);            
         }
@@ -97,5 +97,22 @@ public class ControladorCliente {
             System.out.println("Error al eliminar el Cliente :  " + e.getMessage());
         }
         return respuesta;
+    }
+    public boolean ValidarCampoNumerico(String campo){
+        boolean respuesta=false;
+        try{
+            int numero=Integer.parseInt(campo);
+            if(numero>0){
+                respuesta=true;
+            }else{
+                JOptionPane.showMessageDialog(null, "ingresaste un numero invalido");
+            }
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "Introduzca un numero valido");
+        }
+        
+        
+        return respuesta;
+        
     }
 }

@@ -44,7 +44,6 @@ public class FrmMenu extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
         jCheckBoxMenuItem2 = new javax.swing.JCheckBoxMenuItem();
-        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         menuNuevoUsuario = new javax.swing.JMenuItem();
@@ -89,9 +88,6 @@ public class FrmMenu extends javax.swing.JFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         setFont(new java.awt.Font("Roboto Condensed Medium", 0, 16)); // NOI18N
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setText("usuario");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 590, 310, 50));
 
         jMenu1.setBorder(null);
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/libroDeUsuario...png"))); // NOI18N
@@ -249,6 +245,11 @@ public class FrmMenu extends javax.swing.JFrame {
         menuNuevaVenta.setFont(new java.awt.Font("Roboto Condensed", 0, 14)); // NOI18N
         menuNuevaVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/nuevaventa.png"))); // NOI18N
         menuNuevaVenta.setText("Nueva Venta");
+        menuNuevaVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuNuevaVentaActionPerformed(evt);
+            }
+        });
         jMenu6.add(menuNuevaVenta);
 
         menuGestionVentas.setFont(new java.awt.Font("Roboto Condensed", 0, 14)); // NOI18N
@@ -381,6 +382,12 @@ public class FrmMenu extends javax.swing.JFrame {
         interUsuario.setVisible(true);
     }//GEN-LAST:event_menuNuevoUsuarioActionPerformed
 
+    private void menuNuevaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNuevaVentaActionPerformed
+        InterFacturacion interFacturacion = new InterFacturacion();
+        jDesktopPaneMenu.add(interFacturacion);
+        interFacturacion.setVisible(true);
+    }//GEN-LAST:event_menuNuevaVentaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -408,7 +415,6 @@ public class FrmMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
