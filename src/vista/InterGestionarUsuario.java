@@ -312,7 +312,7 @@ public class InterGestionarUsuario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_botonActualizarActionPerformed
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
-        // TODO add your handling code here:
+        txtNombre.setBackground(new Color(221, 240, 254));
     }//GEN-LAST:event_txtNombreActionPerformed
 
     private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed

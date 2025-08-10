@@ -261,6 +261,14 @@ public class InterCliente extends javax.swing.JInternalFrame {
             txtCedula.requestFocus();
             return;
         }
+        boolean respuesta=controladorCliente.ValidarCampoNumerico(txtCedula.getText().trim());
+        if (!respuesta) {
+            txtCedula.setBackground(Color.RED);
+            txtCedula.requestFocus();
+           
+            return;
+        }
+        
 
         try {
             cliente.setNombre(txtNombre.getText().trim());
@@ -270,7 +278,7 @@ public class InterCliente extends javax.swing.JInternalFrame {
             cliente.setDireccion(txtDireccion.getText().trim());
             cliente.setEstado(1);
             //Guardar Producto
-            if (controladorCliente.Guardar(cliente)) {
+            if (controladorCliente.Guardar(cliente)&&respuesta) {
                 JOptionPane.showMessageDialog(null, "Cliente Guardado");
                 this.limpiar();
             } else {
@@ -335,5 +343,6 @@ public class InterCliente extends javax.swing.JInternalFrame {
         txtDireccion.setText("");
         
     }
+    
 
 }
