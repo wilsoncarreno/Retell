@@ -417,7 +417,7 @@ public class InterProducto extends javax.swing.JInternalFrame {
             // Guardar producto
             if (controlProducto.guardar(producto)) {
                 JOptionPane.showMessageDialog(null, "Registro Guardado");
-                jComboBoxCategoria.setSelectedItem("Seleccione Categoria:");
+                this.CargarComboCategoria();
                 this.limpiar();
             } else {
                 JOptionPane.showMessageDialog(null, "Error al guardar el producto");

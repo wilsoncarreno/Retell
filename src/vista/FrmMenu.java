@@ -8,7 +8,6 @@ import java.awt.Dimension;
 import javax.swing.JDesktopPane;
 import java.sql.Connection;
 
- 
 public class FrmMenu extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmMenu.class.getName());
@@ -365,7 +364,7 @@ public class FrmMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_menuReporteProductosActionPerformed
 
     private void menuGestionarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGestionarUsuariosActionPerformed
-       InterGestionarUsuario interGestionarUsuario = new InterGestionarUsuario();
+        InterGestionarUsuario interGestionarUsuario = new InterGestionarUsuario();
         jDesktopPaneMenu.add(interGestionarUsuario);
         interGestionarUsuario.setVisible(true);
     }//GEN-LAST:event_menuGestionarUsuariosActionPerformed
@@ -448,7 +447,5 @@ public class FrmMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuReporteVentas;
     private javax.swing.JMenuItem menuVerHistorial;
     // End of variables declaration//GEN-END:variables
-    
-    
 
 }

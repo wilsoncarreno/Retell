@@ -102,7 +102,7 @@ public class InterUsuario extends javax.swing.JInternalFrame {
         jLabel7.setFont(new java.awt.Font("Roboto Condensed Medium", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/nuevoe.png"))); // NOI18N
-        jLabel7.setText("Nuevo Cliente ");
+        jLabel7.setText("Nuevo Usuario");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 150, -1));
 
         txtNombre.setBackground(new java.awt.Color(221, 240, 254));

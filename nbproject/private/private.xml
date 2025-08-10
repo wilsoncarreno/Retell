@@ -5,6 +5,11 @@
         <group>
             <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/vista/FrmMenu.java</file>
             <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/vista/InterFacturacion.java</file>
+            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/modelo/CabeceraVenta.java</file>
+            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/modelo/DetalleVenta.java</file>
+            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/vista/InterCliente.java</file>
+            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/controlador/ControladorProducto.java</file>
+            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/vista/InterGestionarProducto.java</file>
         </group>
     </open-files>
 </project-private>
