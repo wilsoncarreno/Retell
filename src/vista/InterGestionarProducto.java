@@ -368,13 +368,7 @@ public class InterGestionarProducto extends javax.swing.JInternalFrame {
             return;
         }
 
-        // Comprobar si el producto ya existe
-//        if (controlProducto.existeProducto(txtNombre.getText().trim())) {
-//            JOptionPane.showMessageDialog(null, "El producto ya existe en la base de datos");
-//            txtNombre.setBackground(Color.RED);
-//            txtNombre.requestFocus();
-//            return;
-//        }
+        
         try {
             // Establecer detalles del producto
             producto.setNombre(txtNombre.getText().trim());
@@ -394,6 +388,7 @@ public class InterGestionarProducto extends javax.swing.JInternalFrame {
                 this.cargarTablaProducto();
                 jComboBoxCategoria.setSelectedItem("Seleccione Categoria");
                 this.Limpiar();
+                idProducto=0;
             } else {
                 JOptionPane.showMessageDialog(null, "Error al guardar el producto");
             }

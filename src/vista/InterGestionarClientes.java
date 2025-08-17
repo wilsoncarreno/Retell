@@ -287,8 +287,10 @@ public class InterGestionarClientes extends javax.swing.JInternalFrame {
             //Guardar Producto
             if (controlcliente.actualizar(cliente,idCliente)) {
                 JOptionPane.showMessageDialog(null, "Registro actualizado");
-                this.cargarTablaClientes();
                 this.limpiar();
+                this.cargarTablaClientes();
+                idCliente = 0;
+                
             } else {
                 JOptionPane.showMessageDialog(null, "Error al guardar el Cliente");
             }
@@ -307,7 +309,9 @@ public class InterGestionarClientes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtTelefonoActionPerformed
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
+        
         ControladorCliente controlCliente = new ControladorCliente();
+        this.limpiar();
         if (idCliente == 0) {
             JOptionPane.showMessageDialog(null, "Seleccione un Cliente");
             return;
@@ -372,6 +376,7 @@ public class InterGestionarClientes extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
     private void cargarTablaClientes() {
+        this.limpiar();
         Connection con = conexion.Conexion.conectar();
         DefaultTableModel model = new DefaultTableModel();
         String sql = "SELECT * FROM tb_cliente;";
@@ -425,6 +430,7 @@ public class InterGestionarClientes extends javax.swing.JInternalFrame {
     
     
     public void EnviarDatosClienteSeleccionado(int idCliente) {
+        this.limpiar();
         try {
             Connection con = Conexion.conectar();
             PreparedStatement pst = con.prepareStatement(
@@ -436,6 +442,7 @@ public class InterGestionarClientes extends javax.swing.JInternalFrame {
                 txtCedula.setText(rs.getString("cedula"));
                 txtTelefono.setText(rs.getString("telefono"));
                 txtDireccion.setText(rs.getString("direccion"));
+                idCliente = 0;
                 
                 
                 

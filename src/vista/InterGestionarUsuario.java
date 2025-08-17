@@ -302,6 +302,7 @@ public class InterGestionarUsuario extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "Usuario actualizado");
                 this.cargarTablaUsuario();
                 this.limpiar();
+                this.idUsuario=0;
             } else {
                 JOptionPane.showMessageDialog(null, "Error al guardar el Usuario");
             }
