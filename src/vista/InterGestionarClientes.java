@@ -17,6 +17,7 @@ import javax.swing.table.DefaultTableModel;
 import modelo.Cliente;
 
 public class InterGestionarClientes extends javax.swing.JInternalFrame {
+
     private int idCliente;
 
     public InterGestionarClientes() {
@@ -243,10 +244,7 @@ public class InterGestionarClientes extends javax.swing.JInternalFrame {
     private void botonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarActionPerformed
         Cliente cliente = new Cliente();
         ControladorCliente controlcliente = new ControladorCliente();
-        
 
-        
-        
         if (txtNombre.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Complete el campo:nombre del Cliente");
             txtNombre.setBackground(Color.RED);
@@ -267,13 +265,13 @@ public class InterGestionarClientes extends javax.swing.JInternalFrame {
             txtCedula.requestFocus();
             return;
         }
-        if(txtTelefono.getText().trim().isEmpty()){
+        if (txtTelefono.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Debe ingresar el numero del contacto telefonico");
             txtTelefono.setBackground(Color.RED);
             txtTelefono.requestFocus();
             return;
         }
-        
+
         try {
             // Establecer detalles del producto
             cliente.setNombre(txtNombre.getText().trim());
@@ -282,15 +280,14 @@ public class InterGestionarClientes extends javax.swing.JInternalFrame {
             cliente.setTelefono(txtTelefono.getText().trim());
             cliente.setDireccion(txtDireccion.getText().trim());
             cliente.setEstado(1);
-            
-            
+
             //Guardar Producto
-            if (controlcliente.actualizar(cliente,idCliente)) {
+            if (controlcliente.actualizar(cliente, idCliente)) {
                 JOptionPane.showMessageDialog(null, "Registro actualizado");
                 this.limpiar();
                 this.cargarTablaClientes();
                 idCliente = 0;
-                
+
             } else {
                 JOptionPane.showMessageDialog(null, "Error al guardar el Cliente");
             }
@@ -305,11 +302,11 @@ public class InterGestionarClientes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtNombreActionPerformed
 
     private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
-        txtTelefono.setBackground(new Color(221, 240, 254)); 
+        txtTelefono.setBackground(new Color(221, 240, 254));
     }//GEN-LAST:event_txtTelefonoActionPerformed
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
-        
+
         ControladorCliente controlCliente = new ControladorCliente();
         this.limpiar();
         if (idCliente == 0) {
@@ -322,7 +319,7 @@ public class InterGestionarClientes extends javax.swing.JInternalFrame {
                     JOptionPane.showMessageDialog(null, "Cliente Eliminado");
                     this.cargarTablaClientes();
                     this.limpiar();
-                    
+
                 } else {
                     JOptionPane.showMessageDialog(null, "Error al Eliminar el Cliente");
                 }
@@ -331,23 +328,26 @@ public class InterGestionarClientes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_botonEliminarActionPerformed
 
     private void txtNombreMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombreMouseEntered
-        txtNombre.setBackground(new Color(221, 240, 254)); 
+        txtNombre.setBackground(new Color(221, 240, 254));
     }//GEN-LAST:event_txtNombreMouseEntered
 
     private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
         txtCedula.setBackground(new Color(221, 240, 254));
     }//GEN-LAST:event_txtCedulaActionPerformed
-    private void txtApellidoEntered(java.awt.event.MouseEvent evt) {                                       
-        txtApellido.setBackground(new Color(221, 240, 254)); 
+    private void txtApellidoEntered(java.awt.event.MouseEvent evt) {
+        txtApellido.setBackground(new Color(221, 240, 254));
     }
-    private void txtTelefonoEntered(java.awt.event.MouseEvent evt) {                                       
-        txtTelefono.setBackground(new Color(221, 240, 254)); 
+
+    private void txtTelefonoEntered(java.awt.event.MouseEvent evt) {
+        txtTelefono.setBackground(new Color(221, 240, 254));
     }
-    private void txtDireccionMouseEntered(java.awt.event.MouseEvent evt) {                                       
-        txtDireccion.setBackground(new Color(221, 240, 254)); 
+
+    private void txtDireccionMouseEntered(java.awt.event.MouseEvent evt) {
+        txtDireccion.setBackground(new Color(221, 240, 254));
     }
-    private void txtCedulaMouseEntered(java.awt.event.MouseEvent evt) {                                       
-        txtApellido.setBackground(new Color(221, 240, 254)); 
+
+    private void txtCedulaMouseEntered(java.awt.event.MouseEvent evt) {
+        txtApellido.setBackground(new Color(221, 240, 254));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -393,17 +393,17 @@ public class InterGestionarClientes extends javax.swing.JInternalFrame {
             model.addColumn("Telefono");
             model.addColumn("Direccion");
             model.addColumn("Estado");
-            while(rs.next()){
-                Object fila[]= new Object[7];
-                for(int i=0; i<7;i++){
-                    fila[i]=rs.getObject(i+1);
+            while (rs.next()) {
+                Object fila[] = new Object[7];
+                for (int i = 0; i < 7; i++) {
+                    fila[i] = rs.getObject(i + 1);
                 }
-               model.addRow(fila); 
+                model.addRow(fila);
             }
             con.close();
         } catch (SQLException e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Error al llenar la tabla clientes "+e);
+            JOptionPane.showMessageDialog(null, "Error al llenar la tabla clientes " + e);
         }
         InterGestionarClientes.tablaClientes.addMouseListener(new MouseAdapter() {
 
@@ -427,8 +427,7 @@ public class InterGestionarClientes extends javax.swing.JInternalFrame {
         txtDireccion.setText("");
         txtCedula.setText("");
     }
-    
-    
+
     public void EnviarDatosClienteSeleccionado(int idCliente) {
         this.limpiar();
         try {
@@ -443,14 +442,10 @@ public class InterGestionarClientes extends javax.swing.JInternalFrame {
                 txtTelefono.setText(rs.getString("telefono"));
                 txtDireccion.setText(rs.getString("direccion"));
                 idCliente = 0;
-                
-                
-                
-
             }
             con.close();
         } catch (SQLException e) {
-            System.out.println("Error al seleccionar producto" + e.getMessage());
+            System.out.println("Error al seleccionar cliente" + e.getMessage());
         }
     }
 

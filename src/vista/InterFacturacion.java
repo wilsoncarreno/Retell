@@ -177,6 +177,11 @@ public class InterFacturacion extends javax.swing.JInternalFrame {
         comboBoxCliente.setFont(new java.awt.Font("Roboto Condensed", 0, 18)); // NOI18N
         comboBoxCliente.setForeground(new java.awt.Color(0, 0, 0));
         comboBoxCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Cliente:", "Item 2", "Item 3", "Item 4" }));
+        comboBoxCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxClienteActionPerformed(evt);
+            }
+        });
         jPanel1.add(comboBoxCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 360, 30));
 
         txtCantidad.setBackground(new java.awt.Color(255, 255, 255));
@@ -483,7 +488,7 @@ public class InterFacturacion extends javax.swing.JInternalFrame {
 
         // Calcular subtotal, IVA, descuento y total
         subTotal = precioUnitario * cantidadEntera;
-        totalPagar = subTotal + iva + descuento;
+        totalPagar = subTotal + (iva*cantidadEntera) + descuento;
 
         // Redondear decimales
         subTotal = Math.round(subTotal * 100) / 100.0;
@@ -706,6 +711,10 @@ public class InterFacturacion extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_tablaProductosMouseClicked
 
+    private void comboBoxClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxClienteActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAgregarProducto;
@@ -759,7 +768,6 @@ public class InterFacturacion extends javax.swing.JInternalFrame {
             System.out.println("Error al cargar clientes" + e);
         }
     }
-
     private void cargarProducto() {
         Connection con = conexion.Conexion.conectar();
         String sql = "SELECT * FROM tb_producto;";

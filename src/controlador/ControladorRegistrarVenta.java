@@ -2,6 +2,7 @@
 package controlador;
 
 
+import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -23,8 +24,7 @@ public class ControladorRegistrarVenta {
         try {
             PreparedStatement consulta = cn.prepareStatement(
                 "INSERT INTO tb_cabecera_venta (idCabeceraVenta, idCliente, valorPagar, fechaVenta, estado) VALUES (?, ?, ?, ?, ?)",
-                java.sql.Statement.RETURN_GENERATED_KEYS
-            );
+                Statement.RETURN_GENERATED_KEYS);
             consulta.setInt(1, 0); // idCabeceraVenta (autoincremental)
             consulta.setInt(2, objeto.getIdCliente());
             consulta.setDouble(3, objeto.getValorPagar());
@@ -70,4 +70,25 @@ public class ControladorRegistrarVenta {
         }
         return respuesta;
     }
+    public boolean actualizar(CabeceraVenta objeto, int idCabeceraVenta) {
+        boolean respuesta = false;
+        Connection cn = conexion.Conexion.conectar();
+        try {
+            PreparedStatement consulta = cn.prepareStatement("update tb_cabecera_venta set idCliente=?, "
+                    + " estado=? where idCabeceraVenta ='"+idCabeceraVenta+"';");
+            
+            consulta.setInt (1, objeto.getIdCliente());
+            consulta.setInt(2, objeto.getEstado());
+            
+            if (consulta.executeUpdate() > 0) {
+                respuesta = true;
+            }
+            cn.close();
+
+        } catch (SQLException e) {
+            System.out.println("error al actualizar el cabecera:  " + e);
+        }
+        return respuesta;
+    }
+    
 }

@@ -4,11 +4,12 @@
  */
 package vista;
 
+import controlador.Reportes;
 import java.awt.Dimension;
 import javax.swing.JDesktopPane;
 import java.sql.Connection;
 
-public class FrmMenu extends javax.swing.JFrame {
+public class FrmMenu extends javax.swing.JFrame  {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmMenu.class.getName());
 
@@ -249,6 +250,11 @@ public class FrmMenu extends javax.swing.JFrame {
         menuGestionVentas.setFont(new java.awt.Font("Roboto Condensed", 0, 14)); // NOI18N
         menuGestionVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gestionarventa...png"))); // NOI18N
         menuGestionVentas.setText("Gestionar Ventas");
+        menuGestionVentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuGestionVentasActionPerformed(evt);
+            }
+        });
         jMenu6.add(menuGestionVentas);
 
         jMenuBar1.add(jMenu6);
@@ -263,11 +269,21 @@ public class FrmMenu extends javax.swing.JFrame {
         menuReporteClientes.setFont(new java.awt.Font("Roboto Condensed", 0, 14)); // NOI18N
         menuReporteClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/reporteCliente...png"))); // NOI18N
         menuReporteClientes.setText("Reportes Clientes");
+        menuReporteClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuReporteClientesActionPerformed(evt);
+            }
+        });
         jMenu7.add(menuReporteClientes);
 
         menuReporteCategorias.setFont(new java.awt.Font("Roboto Condensed", 0, 14)); // NOI18N
         menuReporteCategorias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/reportecategorias...png"))); // NOI18N
         menuReporteCategorias.setText("Reportes Categorias");
+        menuReporteCategorias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuReporteCategoriasActionPerformed(evt);
+            }
+        });
         jMenu7.add(menuReporteCategorias);
 
         menuReporteProductos.setFont(new java.awt.Font("Roboto Condensed", 0, 14)); // NOI18N
@@ -283,6 +299,11 @@ public class FrmMenu extends javax.swing.JFrame {
         menuReporteVentas.setFont(new java.awt.Font("Roboto Condensed", 0, 14)); // NOI18N
         menuReporteVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/reporteVenta...png"))); // NOI18N
         menuReporteVentas.setText("Reportes Ventas");
+        menuReporteVentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuReporteVentasActionPerformed(evt);
+            }
+        });
         jMenu7.add(menuReporteVentas);
 
         jMenuBar1.add(jMenu7);
@@ -355,7 +376,8 @@ public class FrmMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_menuGestionCategoriaActionPerformed
 
     private void menuReporteProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuReporteProductosActionPerformed
-        // TODO add your handling code here:
+        Reportes reportes = new Reportes();
+        reportes.reportesProductos();
     }//GEN-LAST:event_menuReporteProductosActionPerformed
 
     private void menuGestionarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGestionarUsuariosActionPerformed
@@ -381,6 +403,29 @@ public class FrmMenu extends javax.swing.JFrame {
         jDesktopPaneMenu.add(interFacturacion);
         interFacturacion.setVisible(true);
     }//GEN-LAST:event_menuNuevaVentaActionPerformed
+
+    private void menuGestionVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGestionVentasActionPerformed
+        InterGestionarVentas interGestionarVenta = new InterGestionarVentas();
+        jDesktopPaneMenu.add(interGestionarVenta);
+        interGestionarVenta.setVisible(true);
+    }//GEN-LAST:event_menuGestionVentasActionPerformed
+
+    private void menuReporteClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuReporteClientesActionPerformed
+        Reportes reportes = new Reportes();
+        reportes.reportesClientes();
+
+
+    }//GEN-LAST:event_menuReporteClientesActionPerformed
+
+    private void menuReporteCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuReporteCategoriasActionPerformed
+        Reportes reporte = new Reportes();
+        reporte.reportesCategorias();
+    }//GEN-LAST:event_menuReporteCategoriasActionPerformed
+
+    private void menuReporteVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuReporteVentasActionPerformed
+        Reportes reporte = new Reportes();
+        reporte.reportesVentas();
+    }//GEN-LAST:event_menuReporteVentasActionPerformed
 
     /**
      * @param args the command line arguments

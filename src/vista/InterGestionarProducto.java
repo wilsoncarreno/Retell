@@ -594,65 +594,6 @@ public class InterGestionarProducto extends javax.swing.JInternalFrame {
                 }
             }
         });
-//        Connection con = Conexion.conectar();
-//        DefaultTableModel model = new DefaultTableModel();
-//        String sql = "select p.idProducto, p.nombre, p.cantidad, p.precio, p.descripcion, p.porcentajeIva, c.descripcion, p.estado from tb_producto As p, tb_categoria As c where p.idCategoria=c.idCategoria;";
-//        Statement st;
-//        try {
-//
-//            st = con.createStatement();
-//            ResultSet rs = st.executeQuery(sql);
-//            InterGestionarProducto.jTableProductos = new JTable(model);
-//            InterGestionarProducto.jScrollPane1.setViewportView(InterGestionarProducto.jTableProductos);
-//
-//            model.addColumn("N°");//idProducto
-//            model.addColumn("Nombre");
-//            model.addColumn("Cantidad");
-//            model.addColumn("Precio");
-//            model.addColumn("Descripcion");
-//            model.addColumn("IVA");
-//            model.addColumn("Categoria");
-//            model.addColumn("estado");
-//
-//            while (rs.next()) {
-//
-//                precio = rs.getDouble("precio");
-//                porcentajeIva = rs.getInt("porcentajeIva");
-//
-//                Object fila[] = new Object[8];
-//                for (int i = 0; i < 8; i++) {
-//                    if (i == 5) {
-//                        this.calcularIva(precio, porcentajeIva);
-//                        fila[i] = IVA;
-//                        rs.getObject(i + 1);
-//                    } else {
-//                        fila[i] = rs.getObject(i + 1);
-//                    }
-//
-//                }
-//                model.addRow(fila);
-//
-//            }
-//            con.close();
-//
-//        } catch (SQLException e) {
-//            System.out.println("Error al Llenar la Tabla Productos");
-//
-//        }
-//        InterGestionarProducto.jTableProductos.addMouseListener(new MouseAdapter() {
-//
-//            @Override
-//            public void mouseClicked(MouseEvent e) {
-//                int filaPoint = InterGestionarProducto.jTableProductos.rowAtPoint(e.getPoint());
-//                int columnaPoint = 0;
-//                if (filaPoint > -1) {
-//                    idProducto = (int) model.getValueAt(filaPoint, columnaPoint);
-//                    EnviarDatosProductoSeleccionado(idProducto);
-//                }
-//
-//            }
-//        });
-
     }
     //metodo para calcular iva 
 
