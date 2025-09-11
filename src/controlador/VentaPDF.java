@@ -751,66 +751,66 @@ public void generarPDFActualizado(int idVenta, int idCliente) {
         );
         totalParagraph.setAlignment(Element.ALIGN_RIGHT);
         doc.add(totalParagraph);
-
-        // SECCIÓN: Información de devoluciones (mostrar datos de la tabla)
-        doc.add(new Paragraph(" "));
-        Paragraph devolucionesTitulo = new Paragraph("INFORMACIÓN DE DEVOLUCIONES:",
-                new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD, BaseColor.RED));
-        doc.add(devolucionesTitulo);
-
-        // Mostrar las devoluciones basadas en la tabla
-        PdfPTable tablaDevoluciones = new PdfPTable(3);
-        tablaDevoluciones.setWidthPercentage(100);
-        float[] columnasDev = new float[]{50f, 25f, 25f};
-        tablaDevoluciones.setWidths(columnasDev);
-
-        // Headers devoluciones
-        PdfPCell[] headersDev = {
-            new PdfPCell(new Phrase("PRODUCTO", negrita)),
-            new PdfPCell(new Phrase("CANTIDAD DEV.", negrita)),
-            new PdfPCell(new Phrase("ESTADO", negrita))
-        };
-
-        for (PdfPCell header : headersDev) {
-            header.setBackgroundColor(BaseColor.PINK);
-            header.setHorizontalAlignment(Element.ALIGN_CENTER);
-            tablaDevoluciones.addCell(header);
-        }
-
-        boolean hayDevoluciones = false;
-        // 🚨 DEBUG: Mostrar el contenido del mapa antes de procesar
-        System.out.println("=== CONTENIDO DEL MAPA DE DEVOLUCIONES ===");
-        for (Map.Entry<String, Integer> entry : cantidadesADevolver.entrySet()) {
-            System.out.println("Producto: '" + entry.getKey() + "' -> Cantidad: " + entry.getValue());
-        }
-        System.out.println("===========================================");
-        
-        // Agregar filas de devoluciones desde la tabla
-        for (Map.Entry<String, Integer> entry : cantidadesADevolver.entrySet()) {
-            System.out.println("Evaluando: " + entry.getKey() + " con cantidad: " + entry.getValue());
-            
-            if (entry.getValue() > 0) {
-                hayDevoluciones = true;
-                System.out.println("✅ Agregando devolución: " + entry.getKey() + " - " + entry.getValue());
-                
-                tablaDevoluciones.addCell(new PdfPCell(new Phrase(entry.getKey())));
-                tablaDevoluciones.addCell(new PdfPCell(new Phrase(entry.getValue().toString())));
-                tablaDevoluciones.addCell(new PdfPCell(new Phrase("A DEVOLVER",
-                        new Font(Font.FontFamily.HELVETICA, 10, Font.NORMAL, BaseColor.RED))));
-            } else {
-                System.out.println("❌ Sin devolución para: " + entry.getKey());
-            }
-        }
-
-        if (hayDevoluciones) {
-            System.out.println("✅ HAY DEVOLUCIONES - Agregando tabla al PDF");
-            doc.add(tablaDevoluciones);
-        } else {
-            System.out.println("❌ NO HAY DEVOLUCIONES - Mostrando mensaje");
-            Paragraph sinDev = new Paragraph("No hay devoluciones registradas para esta venta.",
-                    new Font(Font.FontFamily.HELVETICA, 10, Font.ITALIC, BaseColor.GRAY));
-            doc.add(sinDev);
-        }
+//
+//        // SECCIÓN: Información de devoluciones (mostrar datos de la tabla)
+//        doc.add(new Paragraph(" "));
+//        Paragraph devolucionesTitulo = new Paragraph("INFORMACIÓN DE DEVOLUCIONES:",
+//                new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD, BaseColor.RED));
+//        doc.add(devolucionesTitulo);
+//
+//        // Mostrar las devoluciones basadas en la tabla
+//        PdfPTable tablaDevoluciones = new PdfPTable(3);
+//        tablaDevoluciones.setWidthPercentage(100);
+//        float[] columnasDev = new float[]{50f, 25f, 25f};
+//        tablaDevoluciones.setWidths(columnasDev);
+//
+//        // Headers devoluciones
+//        PdfPCell[] headersDev = {
+//            new PdfPCell(new Phrase("PRODUCTO", negrita)),
+//            new PdfPCell(new Phrase("CANTIDAD DEV.", negrita)),
+//            new PdfPCell(new Phrase("ESTADO", negrita))
+//        };
+//
+//        for (PdfPCell header : headersDev) {
+//            header.setBackgroundColor(BaseColor.PINK);
+//            header.setHorizontalAlignment(Element.ALIGN_CENTER);
+//            tablaDevoluciones.addCell(header);
+//        }
+//
+//        boolean hayDevoluciones = false;
+//        // 🚨 DEBUG: Mostrar el contenido del mapa antes de procesar
+//        System.out.println("=== CONTENIDO DEL MAPA DE DEVOLUCIONES ===");
+//        for (Map.Entry<String, Integer> entry : cantidadesADevolver.entrySet()) {
+//            System.out.println("Producto: '" + entry.getKey() + "' -> Cantidad: " + entry.getValue());
+//        }
+//        System.out.println("===========================================");
+//        
+//        // Agregar filas de devoluciones desde la tabla
+//        for (Map.Entry<String, Integer> entry : cantidadesADevolver.entrySet()) {
+//            System.out.println("Evaluando: " + entry.getKey() + " con cantidad: " + entry.getValue());
+//            
+//            if (entry.getValue() > 0) {
+//                hayDevoluciones = true;
+//                System.out.println("✅ Agregando devolución: " + entry.getKey() + " - " + entry.getValue());
+//                
+//                tablaDevoluciones.addCell(new PdfPCell(new Phrase(entry.getKey())));
+//                tablaDevoluciones.addCell(new PdfPCell(new Phrase(entry.getValue().toString())));
+//                tablaDevoluciones.addCell(new PdfPCell(new Phrase("A DEVOLVER",
+//                        new Font(Font.FontFamily.HELVETICA, 10, Font.NORMAL, BaseColor.RED))));
+//            } else {
+//                System.out.println("❌ Sin devolución para: " + entry.getKey());
+//            }
+//        }
+//
+//        if (hayDevoluciones) {
+//            System.out.println("✅ HAY DEVOLUCIONES - Agregando tabla al PDF");
+//            doc.add(tablaDevoluciones);
+//        } else {
+//            System.out.println("❌ NO HAY DEVOLUCIONES - Mostrando mensaje");
+//            Paragraph sinDev = new Paragraph("No hay devoluciones registradas para esta venta.",
+//                    new Font(Font.FontFamily.HELVETICA, 10, Font.ITALIC, BaseColor.GRAY));
+//            doc.add(sinDev);
+//        }
 
         con.close();
 

@@ -557,7 +557,7 @@ public class InterFacturacion extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Seleccione un cliente");
             return;
         }
-        if (listaProducto.size() == 0) {
+        if (listaProducto.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Seleccione un producto");
             return;
         }

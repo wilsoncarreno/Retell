@@ -1,14 +1,24 @@
-
 package vista;
+
+import controlador.ControladorReparacion;
+import controlador.PdfReparacion;
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
+import modelo.Reparacion;
+
 public class InterReparacion extends javax.swing.JInternalFrame {
+
+    private int idCliente = 0;
 
     public InterReparacion() {
         initComponents();
+        this.cargarCliente();
     }
 
     /**
@@ -21,29 +31,23 @@ public class InterReparacion extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtAreaDescripcion = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         comboBoxCliente = new javax.swing.JComboBox<>();
-        txtClienteBuscar = new javax.swing.JTextField();
+        totalPagarReparacion = new javax.swing.JTextField();
         botonBuscarCliente1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        guardar = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        txtClienteBuscar1 = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        areaTextDescripcion = new javax.swing.JTextArea();
 
         setClosable(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(221, 240, 254));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        txtAreaDescripcion.setBackground(new java.awt.Color(255, 255, 255));
-        txtAreaDescripcion.setColumns(20);
-        txtAreaDescripcion.setRows(5);
-        txtAreaDescripcion.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jScrollPane1.setViewportView(txtAreaDescripcion);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 890, 230));
 
         jLabel1.setFont(new java.awt.Font("Roboto Condensed Medium", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -68,16 +72,21 @@ public class InterReparacion extends javax.swing.JInternalFrame {
         });
         jPanel1.add(comboBoxCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, 360, 30));
 
-        txtClienteBuscar.setBackground(new java.awt.Color(255, 255, 255));
-        txtClienteBuscar.setFont(new java.awt.Font("Roboto Condensed", 0, 16)); // NOI18N
-        txtClienteBuscar.setForeground(new java.awt.Color(0, 0, 0));
-        txtClienteBuscar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        txtClienteBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtClienteBuscarActionPerformed(evt);
+        totalPagarReparacion.setBackground(new java.awt.Color(255, 255, 255));
+        totalPagarReparacion.setFont(new java.awt.Font("Roboto Condensed", 0, 18)); // NOI18N
+        totalPagarReparacion.setForeground(new java.awt.Color(0, 0, 0));
+        totalPagarReparacion.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        totalPagarReparacion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                totalPagarReparacionMouseClicked(evt);
             }
         });
-        jPanel1.add(txtClienteBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 70, 290, 30));
+        totalPagarReparacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                totalPagarReparacionActionPerformed(evt);
+            }
+        });
+        jPanel1.add(totalPagarReparacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 400, 290, 30));
 
         botonBuscarCliente1.setBackground(new java.awt.Color(0, 153, 255));
         botonBuscarCliente1.setFont(new java.awt.Font("Roboto Condensed", 0, 18)); // NOI18N
@@ -94,22 +103,56 @@ public class InterReparacion extends javax.swing.JInternalFrame {
         jLabel4.setFont(new java.awt.Font("Roboto Condensed Medium", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel4.setText("Cliente: ");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 100, 30));
+        jLabel4.setText("Valor Reparacion:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, 150, 30));
 
-        jButton1.setBackground(new java.awt.Color(0, 153, 255));
-        jButton1.setFont(new java.awt.Font("Roboto Condensed", 0, 16)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/guardaramarillo...png"))); // NOI18N
-        jButton1.setText("Guardar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        guardar.setBackground(new java.awt.Color(0, 153, 255));
+        guardar.setFont(new java.awt.Font("Roboto Condensed", 0, 16)); // NOI18N
+        guardar.setForeground(new java.awt.Color(0, 0, 0));
+        guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/guardaramarillo...png"))); // NOI18N
+        guardar.setText("Guardar");
+        guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                guardarActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 410, 120, 40));
+        jPanel1.add(guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 460, 120, 40));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 480));
+        jLabel5.setFont(new java.awt.Font("Roboto Condensed Medium", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel5.setText("Cliente: ");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 100, 30));
+
+        txtClienteBuscar1.setBackground(new java.awt.Color(255, 255, 255));
+        txtClienteBuscar1.setFont(new java.awt.Font("Roboto Condensed", 0, 16)); // NOI18N
+        txtClienteBuscar1.setForeground(new java.awt.Color(0, 0, 0));
+        txtClienteBuscar1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtClienteBuscar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtClienteBuscar1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtClienteBuscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 70, 290, 30));
+
+        areaTextDescripcion.setBackground(new java.awt.Color(255, 255, 255));
+        areaTextDescripcion.setColumns(20);
+        areaTextDescripcion.setFont(new java.awt.Font("Roboto Condensed", 0, 18)); // NOI18N
+        areaTextDescripcion.setForeground(new java.awt.Color(0, 0, 0));
+        areaTextDescripcion.setRows(5);
+        areaTextDescripcion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                areaTextDescripcionMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                areaTextDescripcionMouseEntered(evt);
+            }
+        });
+        jScrollPane2.setViewportView(areaTextDescripcion);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 880, 220));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 550));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -118,12 +161,12 @@ public class InterReparacion extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_comboBoxClienteActionPerformed
 
-    private void txtClienteBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtClienteBuscarActionPerformed
+    private void totalPagarReparacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalPagarReparacionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtClienteBuscarActionPerformed
+    }//GEN-LAST:event_totalPagarReparacionActionPerformed
 
     private void botonBuscarCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarCliente1ActionPerformed
-        String clienteBuscar = txtClienteBuscar.getText().trim();
+        String clienteBuscar = totalPagarReparacion.getText().trim();
         Connection con = conexion.Conexion.conectar();
         String sql = "SELECT nombre, apellido FROM tb_cliente where cedula='" + clienteBuscar + "';";
         Statement st;
@@ -136,28 +179,134 @@ public class InterReparacion extends javax.swing.JInternalFrame {
                 comboBoxCliente.setSelectedItem("Seleccione Cliente:");
                 JOptionPane.showMessageDialog(null, "Cedula de Cliente incorrecta o no encontrada");
             }
-            txtClienteBuscar.setText("");
+            totalPagarReparacion.setText("");
             con.close();
         } catch (SQLException e) {
             System.out.println("error al buscar cliente" + e);
         }
     }//GEN-LAST:event_botonBuscarCliente1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
+        ControladorReparacion controladorReparacion = new ControladorReparacion();
+        Reparacion reparacion = new Reparacion();
+        Date date = new Date();
+        String fechaActual = new SimpleDateFormat("yyyy/MM/dd").format(date);
+        if (comboBoxCliente.getSelectedItem().equals("Seleccione Cliente:")) {
+            JOptionPane.showMessageDialog(null, "¡Seleccione un Cliente!");
+            return;
+        }
+        if (areaTextDescripcion.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "¡debe ingresar una descripcion");
+            areaTextDescripcion.setBackground(Color.red);
+            return;
+        }
+        if (totalPagarReparacion.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "ingrese el valor de la reparacion");
+            totalPagarReparacion.setBackground(Color.red);
+        }
+        double totalAPagar;
+        try {
+            totalAPagar = Double.parseDouble(totalPagarReparacion.getText().trim());
+            if (totalAPagar <= 0) {
+                JOptionPane.showMessageDialog(null, "El Valor de la Reparacion Debe Ser un valor valido, no se permite colocar un numero negativo");
+                totalPagarReparacion.setBackground(Color.red);
+                totalPagarReparacion.requestFocus();
+                return;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "El valor debe ser un número válido sin letras");
+            totalPagarReparacion.setBackground(Color.RED);
+            totalPagarReparacion.requestFocus();
+            return;
+        }
+        try {
+            this.obtenerIdCliente();
+            reparacion.setIdCliente(idCliente);
+            reparacion.setFechaContrato(fechaActual);
+            reparacion.setDescripcion(areaTextDescripcion.getText());
+            reparacion.setPrecioReparacion(totalAPagar);
+            if (controladorReparacion.guardar(reparacion)) {
+                JOptionPane.showMessageDialog(null, "Registro Guardado");
+                PdfReparacion pdf = new PdfReparacion();
+                pdf.datosCliente(idCliente);
+                pdf.generarReparacionPDF();
+                this.limpiar();
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al guardar el producto");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Ocurrió un error al guardar la Reparacion: " + e.getMessage());
+        }
+    }//GEN-LAST:event_guardarActionPerformed
+
+    private void txtClienteBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtClienteBuscar1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_txtClienteBuscar1ActionPerformed
+
+    private void areaTextDescripcionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_areaTextDescripcionMouseEntered
+
+    }//GEN-LAST:event_areaTextDescripcionMouseEntered
+
+    private void areaTextDescripcionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_areaTextDescripcionMouseClicked
+        areaTextDescripcion.setBackground(new Color(255, 255, 255));
+    }//GEN-LAST:event_areaTextDescripcionMouseClicked
+
+    private void totalPagarReparacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_totalPagarReparacionMouseClicked
+        areaTextDescripcion.setBackground(new Color(255, 255, 255));
+    }//GEN-LAST:event_totalPagarReparacionMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JTextArea areaTextDescripcion;
     private javax.swing.JButton botonBuscarCliente1;
     private javax.swing.JComboBox<String> comboBoxCliente;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton guardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea txtAreaDescripcion;
-    private javax.swing.JTextField txtClienteBuscar;
+    private javax.swing.JScrollPane jScrollPane2;
+    public javax.swing.JTextField totalPagarReparacion;
+    private javax.swing.JTextField txtClienteBuscar1;
     // End of variables declaration//GEN-END:variables
+private void cargarCliente() {
+        Connection con = conexion.Conexion.conectar();
+        String sql = "SELECT * FROM tb_cliente;";
+        Statement st;
+        try {
+            st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            comboBoxCliente.removeAllItems();
+            comboBoxCliente.addItem("Seleccione Cliente:");
+            while (rs.next()) {
+                comboBoxCliente.addItem(rs.getString("nombre") + " " + rs.getString("apellido"));
+            }
+            con.close();
+        } catch (SQLException e) {
+            System.out.println("Error al cargar clientes" + e);
+        }
+    }
+
+    private void obtenerIdCliente() {
+        try {
+            String sql = "SELECT * FROM tb_cliente where concat(nombre, ' ',apellido) = '" + this.comboBoxCliente.getSelectedItem() + "';";
+            Connection con = conexion.Conexion.conectar();
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                idCliente = rs.getInt("idCliente");
+            }
+        } catch (SQLException e) {
+            System.out.println("error al obtener el ID del cliente" + e);
+        }
+    }
+
+    public void limpiar() {
+        comboBoxCliente.setSelectedItem("Seleccione Cliente:");
+        txtClienteBuscar1.setText("");
+        areaTextDescripcion.setText("");
+        totalPagarReparacion.setText("");
+    }
+
 }

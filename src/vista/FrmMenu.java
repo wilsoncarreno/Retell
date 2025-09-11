@@ -123,6 +123,11 @@ public class FrmMenu extends javax.swing.JFrame  {
         menuNuevaReparacion.setFont(new java.awt.Font("Roboto Condensed", 0, 14)); // NOI18N
         menuNuevaReparacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/parches...png"))); // NOI18N
         menuNuevaReparacion.setText("Nueva Reparación");
+        menuNuevaReparacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuNuevaReparacionActionPerformed(evt);
+            }
+        });
         jMenu8.add(menuNuevaReparacion);
 
         jMenuItem7.setFont(new java.awt.Font("Roboto Condensed", 0, 14)); // NOI18N
@@ -318,6 +323,11 @@ public class FrmMenu extends javax.swing.JFrame  {
         menuVerHistorial.setFont(new java.awt.Font("Roboto Condensed", 0, 14)); // NOI18N
         menuVerHistorial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/historialhistorial...png"))); // NOI18N
         menuVerHistorial.setText("Ver Historial");
+        menuVerHistorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuVerHistorialActionPerformed(evt);
+            }
+        });
         jMenu9.add(menuVerHistorial);
 
         jMenuBar1.add(jMenu9);
@@ -426,6 +436,18 @@ public class FrmMenu extends javax.swing.JFrame  {
         Reportes reporte = new Reportes();
         reporte.reportesVentas();
     }//GEN-LAST:event_menuReporteVentasActionPerformed
+
+    private void menuVerHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuVerHistorialActionPerformed
+        InterGraficas interGraficas = new InterGraficas();
+        jDesktopPaneMenu.add(interGraficas);
+        interGraficas.setVisible(true);
+    }//GEN-LAST:event_menuVerHistorialActionPerformed
+
+    private void menuNuevaReparacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNuevaReparacionActionPerformed
+        InterReparacion interReparacion = new InterReparacion();
+        jDesktopPaneMenu.add(interReparacion);
+        interReparacion.setVisible(true);
+    }//GEN-LAST:event_menuNuevaReparacionActionPerformed
 
     /**
      * @param args the command line arguments
