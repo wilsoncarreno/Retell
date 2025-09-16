@@ -227,7 +227,7 @@ public class InterReparacion extends javax.swing.JInternalFrame {
             reparacion.setPrecioReparacion(totalAPagar);
             if (controladorReparacion.guardar(reparacion)) {
                 JOptionPane.showMessageDialog(null, "Registro Guardado");
-                PdfReparacion pdf = new PdfReparacion();
+                PdfReparacion pdf = new PdfReparacion(reparacion);
                 pdf.datosCliente(idCliente);
                 pdf.generarReparacionPDF();
                 this.limpiar();

@@ -17,6 +17,7 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import static java.lang.String.valueOf;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -27,6 +28,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
+import modelo.Reparacion;
 import vista.InterReparacion;
 import static vista.InterGestionarVentas.TablaProductosADevolver;
 import vista.InterReparacion;
@@ -37,12 +39,25 @@ public class PdfReparacion {
     private String cedulaCliente;
     private String telefonoCliente;
     private String direccionCliente;
-    private String descripcionContrato;
+ 
+    String descripcion;
+    String total;
 
     // AGREGAR ESTAS VARIABLES QUE FALTABAN:
     private String nombreArchivoPDFReparacion;
     private String fechaActual;
-    InterReparacion interReparacion=new InterReparacion();
+    InterReparacion interReparacion = new InterReparacion();
+
+    public PdfReparacion() {
+
+    }
+
+    public PdfReparacion(Reparacion reparacion) {
+        this.descripcion = reparacion.getDescripcion();
+        this.total = String.valueOf((long) reparacion.getPrecioReparacion());
+        
+
+    }
 
     public void datosCliente(int idCliente) {
         Connection con = conexion.Conexion.conectar();
@@ -184,18 +199,14 @@ public class PdfReparacion {
             tablareparacion.addCell(reparacion1);
             tablareparacion.addCell(reparacion2);
 
-            String Descripcion= interReparacion.areaTextDescripcion.getText();
-            String total = interReparacion.totalPagarReparacion.getText();
-
-            tablareparacion.addCell(Descripcion);
+            tablareparacion.addCell(descripcion);
             tablareparacion.addCell(total);
-            
 
             doc.add(tablareparacion);
 
             Paragraph info = new Paragraph();
             info.add(Chunk.NEWLINE);
-            info.add("Total a Pagar: " + interReparacion.totalPagarReparacion.getText());
+            info.add("Total a Pagar: " + total);
             info.setAlignment(Element.ALIGN_RIGHT);
             doc.add(info);
 
@@ -208,7 +219,7 @@ public class PdfReparacion {
 
             Paragraph mensaje = new Paragraph();
             mensaje.add(Chunk.NEWLINE);
-            mensaje.add("¡Gracias por su compra !");
+            mensaje.add("¡Gracias por Preferirnos !");
             mensaje.setAlignment(Element.ALIGN_CENTER);
             doc.add(mensaje);
 
@@ -221,5 +232,34 @@ public class PdfReparacion {
             System.out.println("error en: " + e);
         }
     }
+    public void generarPdf(int idReparacion) {
+    try (Connection con = Conexion.conectar()) {
+        String sql = "SELECT r.descripcion, r.precioReparacion, c.idCliente " +
+                     "FROM tb_reparacion r " +
+                     "INNER JOIN tb_cliente c ON r.idCliente = c.idCliente " +
+                     "WHERE r.idReparacion = ?";
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, idReparacion);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    // asignar valores
+                    this.descripcion = rs.getString("descripcion");
+                    this.total = String.valueOf((long) rs.getDouble("precioReparacion"));
+                    int idCliente = rs.getInt("idCliente");
+
+                    // cargar datos del cliente
+                    datosCliente(idCliente);
+
+                    // generar el PDF con la info cargada
+                    generarReparacionPDF();
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se encontró la reparación con ID: " + idReparacion);
+                }
+            }
+        }
+    } catch (SQLException e) {
+        System.out.println("Error al generar PDF por id: " + e);
+    }
+}
 
 }

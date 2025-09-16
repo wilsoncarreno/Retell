@@ -5,12 +5,12 @@
         <group>
             <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/vista/FrmMenu.java</file>
             <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/vista/InterReparacion.java</file>
-            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/modelo/Reparacion.java</file>
-            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/controlador/ControladorReparacion.java</file>
-            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/controlador/ControladorRegistrarVenta.java</file>
-            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/controlador/PdfReparacion.java</file>
-            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/controlador/VentaPDF.java</file>
+            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/vista/InterGestionarReparacion.java</file>
+            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/vista/InterGestionarClientes.java</file>
             <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/vista/InterFacturacion.java</file>
+            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/controlador/PdfReparacion.java</file>
+            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/controlador/ControladorReparacion.java</file>
+            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/vista/FrmLogin.java</file>
         </group>
     </open-files>
 </project-private>

@@ -617,17 +617,7 @@ public class InterGestionarProducto extends javax.swing.JInternalFrame {
                 txtPrecio.setText(rs.getString("precio"));
                 txtDescripcion.setText(rs.getString("descripcion"));
                 txtIva.setText(rs.getString("porcentajeIva"));
-//                switch (iva) {
-//                    case 0:
-//                        jComboBoxIva.setSelectedItem("No Grava IVA");
-//                        break;
-//                    case 19:
-//                        jComboBoxIva.setSelectedItem("19%");
-//                        break;
-//                    default:
-//                        jComboBoxIva.setSelectedItem("Seleccione IVA:");
-//                        break;
-//                }
+
                 int idCate = rs.getInt("idCategoria");
                 jComboBoxCategoria.setSelectedItem(relacionarCategoria(idCate));
 

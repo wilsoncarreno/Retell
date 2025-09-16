@@ -39,6 +39,7 @@ public class FrmMenu extends javax.swing.JFrame  {
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
         jCheckBoxMenuItem2 = new javax.swing.JCheckBoxMenuItem();
+        jMenu5 = new javax.swing.JMenu();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         menuNuevoUsuario = new javax.swing.JMenuItem();
@@ -67,6 +68,7 @@ public class FrmMenu extends javax.swing.JFrame  {
         jMenu9 = new javax.swing.JMenu();
         menuVerHistorial = new javax.swing.JMenuItem();
         menuCerrarSesion = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
 
         jMenuItem2.setText("jMenuItem2");
 
@@ -78,6 +80,8 @@ public class FrmMenu extends javax.swing.JFrame  {
 
         jCheckBoxMenuItem2.setSelected(true);
         jCheckBoxMenuItem2.setText("jCheckBoxMenuItem2");
+
+        jMenu5.setText("jMenu5");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -131,7 +135,13 @@ public class FrmMenu extends javax.swing.JFrame  {
         jMenu8.add(menuNuevaReparacion);
 
         jMenuItem7.setFont(new java.awt.Font("Roboto Condensed", 0, 14)); // NOI18N
+        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/descripcionproducto.png"))); // NOI18N
         jMenuItem7.setText("Gestionar Reparaciones");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
         jMenu8.add(jMenuItem7);
 
         jMenuBar1.add(jMenu8);
@@ -338,6 +348,21 @@ public class FrmMenu extends javax.swing.JFrame  {
         menuCerrarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         menuCerrarSesion.setFont(new java.awt.Font("Roboto Condensed Medium", 0, 16)); // NOI18N
         menuCerrarSesion.setPreferredSize(new java.awt.Dimension(150, 50));
+
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cohete...png"))); // NOI18N
+        jMenuItem3.setText("Cerrar Sesión");
+        jMenuItem3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuItem3MouseClicked(evt);
+            }
+        });
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        menuCerrarSesion.add(jMenuItem3);
+
         jMenuBar1.add(menuCerrarSesion);
 
         setJMenuBar(jMenuBar1);
@@ -346,18 +371,21 @@ public class FrmMenu extends javax.swing.JFrame  {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuNuevoProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNuevoProductoActionPerformed
+        cerrarInternalFrames();
         InterProducto interProducto = new InterProducto();
         jDesktopPaneMenu.add(interProducto);
         interProducto.setVisible(true);
     }//GEN-LAST:event_menuNuevoProductoActionPerformed
 
     private void menuGestionarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGestionarProductosActionPerformed
+        cerrarInternalFrames();
         InterGestionarProducto interGestionarProducto = new InterGestionarProducto();
         jDesktopPaneMenu.add(interGestionarProducto);
         interGestionarProducto.setVisible(true);
     }//GEN-LAST:event_menuGestionarProductosActionPerformed
 
     private void menuNuevoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNuevoClienteActionPerformed
+        cerrarInternalFrames();
         InterCliente interCliente = new InterCliente();
         jDesktopPaneMenu.add(interCliente);
         interCliente.setVisible(true);
@@ -366,6 +394,7 @@ public class FrmMenu extends javax.swing.JFrame  {
     }//GEN-LAST:event_menuNuevoClienteActionPerformed
 
     private void menuGestionarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGestionarClientesActionPerformed
+        cerrarInternalFrames();
         InterGestionarClientes interGestionarClientes = new InterGestionarClientes();
         jDesktopPaneMenu.add(interGestionarClientes);
         interGestionarClientes.setVisible(true);
@@ -373,12 +402,14 @@ public class FrmMenu extends javax.swing.JFrame  {
     }//GEN-LAST:event_menuGestionarClientesActionPerformed
 
     private void menuNuevaCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNuevaCategoriaActionPerformed
+        cerrarInternalFrames();
         InterCategoria interCategoria = new InterCategoria();
         jDesktopPaneMenu.add(interCategoria);
         interCategoria.setVisible(true);
     }//GEN-LAST:event_menuNuevaCategoriaActionPerformed
 
     private void menuGestionCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGestionCategoriaActionPerformed
+        cerrarInternalFrames();
         InterGestionarCategorias interGestionarCategoria = new InterGestionarCategorias();
         jDesktopPaneMenu.add(interGestionarCategoria);
         interGestionarCategoria.setVisible(true);
@@ -386,41 +417,48 @@ public class FrmMenu extends javax.swing.JFrame  {
     }//GEN-LAST:event_menuGestionCategoriaActionPerformed
 
     private void menuReporteProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuReporteProductosActionPerformed
+        cerrarInternalFrames();
         Reportes reportes = new Reportes();
         reportes.reportesProductos();
     }//GEN-LAST:event_menuReporteProductosActionPerformed
 
     private void menuGestionarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGestionarUsuariosActionPerformed
+        cerrarInternalFrames();
         InterGestionarUsuario interGestionarUsuario = new InterGestionarUsuario();
         jDesktopPaneMenu.add(interGestionarUsuario);
         interGestionarUsuario.setVisible(true);
     }//GEN-LAST:event_menuGestionarUsuariosActionPerformed
 
     private void menuActualizarStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuActualizarStockActionPerformed
+        cerrarInternalFrames();
         InterActualizarStock interActuaizarStock = new InterActualizarStock();
         jDesktopPaneMenu.add(interActuaizarStock);
         interActuaizarStock.setVisible(true);
     }//GEN-LAST:event_menuActualizarStockActionPerformed
 
     private void menuNuevoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNuevoUsuarioActionPerformed
+        cerrarInternalFrames();
         InterUsuario interUsuario = new InterUsuario();
         jDesktopPaneMenu.add(interUsuario);
         interUsuario.setVisible(true);
     }//GEN-LAST:event_menuNuevoUsuarioActionPerformed
 
     private void menuNuevaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNuevaVentaActionPerformed
+        cerrarInternalFrames();
         InterFacturacion interFacturacion = new InterFacturacion();
         jDesktopPaneMenu.add(interFacturacion);
         interFacturacion.setVisible(true);
     }//GEN-LAST:event_menuNuevaVentaActionPerformed
 
     private void menuGestionVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGestionVentasActionPerformed
+        cerrarInternalFrames();
         InterGestionarVentas interGestionarVenta = new InterGestionarVentas();
         jDesktopPaneMenu.add(interGestionarVenta);
         interGestionarVenta.setVisible(true);
     }//GEN-LAST:event_menuGestionVentasActionPerformed
 
     private void menuReporteClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuReporteClientesActionPerformed
+        cerrarInternalFrames();
         Reportes reportes = new Reportes();
         reportes.reportesClientes();
 
@@ -428,26 +466,45 @@ public class FrmMenu extends javax.swing.JFrame  {
     }//GEN-LAST:event_menuReporteClientesActionPerformed
 
     private void menuReporteCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuReporteCategoriasActionPerformed
+        cerrarInternalFrames();
         Reportes reporte = new Reportes();
         reporte.reportesCategorias();
     }//GEN-LAST:event_menuReporteCategoriasActionPerformed
 
     private void menuReporteVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuReporteVentasActionPerformed
+        cerrarInternalFrames();
         Reportes reporte = new Reportes();
         reporte.reportesVentas();
     }//GEN-LAST:event_menuReporteVentasActionPerformed
 
     private void menuVerHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuVerHistorialActionPerformed
+        cerrarInternalFrames();
         InterGraficas interGraficas = new InterGraficas();
         jDesktopPaneMenu.add(interGraficas);
         interGraficas.setVisible(true);
     }//GEN-LAST:event_menuVerHistorialActionPerformed
 
     private void menuNuevaReparacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNuevaReparacionActionPerformed
+        cerrarInternalFrames();
         InterReparacion interReparacion = new InterReparacion();
         jDesktopPaneMenu.add(interReparacion);
         interReparacion.setVisible(true);
     }//GEN-LAST:event_menuNuevaReparacionActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        cerrarInternalFrames();
+        InterGestionarReparacion interGestionarReparacion = new InterGestionarReparacion();
+        jDesktopPaneMenu.add(interGestionarReparacion);
+        interGestionarReparacion.setVisible(true);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        System.exit(0);  
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem3MouseClicked
+        System.exit(0);  
+    }//GEN-LAST:event_jMenuItem3MouseClicked
 
     /**
      * @param args the command line arguments
@@ -480,6 +537,7 @@ public class FrmMenu extends javax.swing.JFrame  {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
@@ -487,6 +545,7 @@ public class FrmMenu extends javax.swing.JFrame  {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
@@ -509,5 +568,11 @@ public class FrmMenu extends javax.swing.JFrame  {
     private javax.swing.JMenuItem menuReporteVentas;
     private javax.swing.JMenuItem menuVerHistorial;
     // End of variables declaration//GEN-END:variables
+
+private void cerrarInternalFrames() {
+    for (javax.swing.JInternalFrame frame : jDesktopPaneMenu.getAllFrames()) {
+        frame.dispose(); // Cierra y elimina el internal frame
+    }
+}
 
 }
