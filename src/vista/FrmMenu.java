@@ -6,6 +6,8 @@ package vista;
 
 import controlador.Reportes;
 import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.Toolkit;
 import javax.swing.JDesktopPane;
 import java.sql.Connection;
 
@@ -28,6 +30,11 @@ public class FrmMenu extends javax.swing.JFrame  {
         int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
         this.jDesktopPaneMenu.setBounds(0, 0, ancho, (alto - 110));
         this.add(jDesktopPaneMenu);
+    }
+    @Override
+    public Image getIconImage(){
+        Image retValue=Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("img/logoRetell..png"));
+        return retValue.getScaledInstance(2000, 2000, Image.SCALE_SMOOTH);
     }
 
     @SuppressWarnings("unchecked")
@@ -86,6 +93,7 @@ public class FrmMenu extends javax.swing.JFrame  {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         setFont(new java.awt.Font("Roboto Condensed Medium", 0, 16)); // NOI18N
+        setIconImage(getIconImage());
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jMenu1.setBorder(null);

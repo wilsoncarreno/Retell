@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package controlador;
 
 import java.sql.Connection;
@@ -11,7 +7,6 @@ import java.sql.Statement;
 import java.sql.ResultSet;
 import modelo.Categoria;
 
-//metodo para registrar categorias.
 public class ControladorCategoria {
 
     public boolean guardar(Categoria objeto) {
@@ -33,7 +28,6 @@ public class ControladorCategoria {
         return respuesta;
     }
 
-    //metodo para consultar si existe la categoria 
     public boolean existeCategoria(String categoria) {
         boolean respuesta = false;
         String sql = "select descripcion from tb_categoria where descripcion= '" + categoria + "';";
@@ -53,7 +47,6 @@ public class ControladorCategoria {
         return respuesta;
     }
     
-    //metodo de actualizar tabala categoria.
     public boolean actualizar(Categoria objeto, int idCategoria) {
         boolean respuesta = false;
         Connection cn = conexion.Conexion.conectar();
@@ -73,7 +66,6 @@ public class ControladorCategoria {
         return respuesta;
     }
     
-    //metodo de eliminar tabala categoria.
     public boolean eliminar( int idCategoria) {
         boolean respuesta = false;
         Connection cn = conexion.Conexion.conectar();

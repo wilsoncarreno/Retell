@@ -1,9 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package controlador;
-
 import conexion.Conexion;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -12,10 +7,7 @@ import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 import modelo.Usuario;
-
 public class ControladorUsuario {
-
-    //metodo para iniciar sesion
     public boolean loginUser(Usuario objeto) {
         boolean respuesta = false;
         Connection cn = Conexion.conectar();
@@ -27,16 +19,13 @@ public class ControladorUsuario {
             while (rs.next()) {
                 respuesta = true;
             }
-
         } catch (SQLException e) {
             System.out.println("Error al iniciar seccion ");
             JOptionPane.showMessageDialog(null, "Error al iniciar seccion");
-
         }
         return respuesta;
     }
-
-    //metodo para guardar usuario
+    
     public boolean Guardar(Usuario usuario) {
         boolean respuesta = false;
         Connection cn = conexion.Conexion.conectar();
@@ -102,7 +91,8 @@ public class ControladorUsuario {
         boolean respuesta = false;
         Connection cn = conexion.Conexion.conectar();
         try {
-            PreparedStatement consulta = cn.prepareStatement("update tb_Usuario set nombre=?, apellido=?, usuario=?, password=?, telefono=?, estado=? where idUsuario ='"+idUsuario+"';");
+            PreparedStatement consulta = cn.prepareStatement("update tb_Usuario set nombre=?, apellido=?,"
+                    + " usuario=?, password=?, telefono=?, estado=? where idUsuario ='"+idUsuario+"';");
             
             consulta.setString(1, objeto.getNombre());
             consulta.setString(2, objeto.getApellido());

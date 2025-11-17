@@ -8,9 +8,7 @@ import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import modelo.Cliente;
 public class ControladorCliente {
-    
-    
-    //metodo para guardar Cliente 
+        
     public boolean Guardar(Cliente cliente){
         boolean respuesta=false;
         Connection cn=conexion.Conexion.conectar();
@@ -33,8 +31,6 @@ public class ControladorCliente {
         return respuesta;
     }
     
-    
-    // metodo para vrificar si el cliente existe
     public boolean ExisteCliente(String cliente){
         boolean respuesta=false;
         String sql="SELECT cedula FROM tb_cliente WHERE cedula= '"+cliente+"';";
@@ -53,7 +49,6 @@ public class ControladorCliente {
         
     }
     
-    //metodo actualizar
     public boolean actualizar(Cliente objeto, int idCliente) {
         boolean respuesta = false;
         Connection cn = conexion.Conexion.conectar();
@@ -77,7 +72,7 @@ public class ControladorCliente {
         }
         return respuesta;
     }
-    //metodo Eliminar
+    
     public boolean eliminar( int idCliente) {
         boolean respuesta = false;
         Connection cn = conexion.Conexion.conectar();

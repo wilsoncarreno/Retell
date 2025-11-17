@@ -1,6 +1,4 @@
-
 package modelo;
-
 public class Cliente {
     private int idCliente;
     private String nombre;
@@ -8,8 +6,7 @@ public class Cliente {
     private String cedula;
     private String telefono;
     private String direccion;
-    private int estado;    
-    
+    private int estado;   
     public Cliente(){        
     }
     public Cliente(int idCliente,String nombre,String apellido, String cedula, String telefono, String direccion, int estado){
@@ -20,9 +17,6 @@ public class Cliente {
         this.direccion=direccion;
         this.estado=estado;
     }
-    
-    //metodos setter and getters
-    
     public int getIdCliente(){
         return this.idCliente;
     }

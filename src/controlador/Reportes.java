@@ -22,8 +22,6 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 
 public class Reportes {
-
-    //metodo para crear reportes de los clientes 
     public void reportesClientes() {
         Document documento = new Document();
         try {
@@ -45,7 +43,6 @@ public class Reportes {
             //agregamos los datos
             documento.add(header);
             documento.add(parrafo);
-
             PdfPTable tabla = new PdfPTable(5);
             tabla.addCell("Codigo");
             tabla.addCell("Nombre");
@@ -64,7 +61,6 @@ public class Reportes {
                         tabla.addCell(rs.getString(4));
                         tabla.addCell(rs.getString(5));
                     } while (rs.next());
-
                 }
                 documento.add(tabla);
                 JOptionPane.showMessageDialog(null, "Reporte Creado");
@@ -72,7 +68,6 @@ public class Reportes {
                 System.out.println("error en " + e);
             }
             documento.close();
-
         } catch (DocumentException e) {
             System.out.println("error 1 en " + e);
         } catch (FileNotFoundException ex) {
@@ -80,7 +75,6 @@ public class Reportes {
         } catch (IOException ex) {
             System.out.println("error 3 en " + ex);
         }
-
     }
     public void reportesProductos() {
         Document documento = new Document();
@@ -104,7 +98,6 @@ public class Reportes {
             documento.add(header);
             documento.add(parrafo);
             float[]columnwidths={3f,5f,4f,5f,7f,5f,6f};
-
             PdfPTable tabla = new PdfPTable(7);
             tabla.addCell("Codigo");
             tabla.addCell("Nombre");
@@ -130,7 +123,6 @@ public class Reportes {
                         tabla.addCell(rs.getString(6));
                         tabla.addCell(rs.getString(7));
                     } while (rs.next());
-
                 }
                 documento.add(tabla);
                 JOptionPane.showMessageDialog(null, "Reporte Creado");
@@ -138,7 +130,6 @@ public class Reportes {
                 System.out.println("error en " + e);
             }
             documento.close();
-
         } catch (DocumentException e) {
             System.out.println("error 1 en " + e);
         } catch (FileNotFoundException ex) {
@@ -146,7 +137,6 @@ public class Reportes {
         } catch (IOException ex) {
             System.out.println("error 3 en " + ex);
         }
-
     }
     public void reportesCategorias() {
         Document documento = new Document();
@@ -154,7 +144,7 @@ public class Reportes {
             String ruta = "C:\\Users\\DELL\\OneDrive\\Imágenes\\Escritorio\\reportes\\";
             File directorio = new File(ruta);
             if (!directorio.exists()) {
-                directorio.mkdirs(); // crea la carpeta Desktop si no existe
+                directorio.mkdirs(); 
             }
             PdfWriter.getInstance(documento, new FileOutputStream(ruta + "Reporte_categorias.pdf"));
             Image header = Image.getInstance("src/img/fondoencabezado.jpg");
@@ -169,7 +159,6 @@ public class Reportes {
             //agregamos los datos
             documento.add(header);
             documento.add(parrafo);
-
             PdfPTable tabla = new PdfPTable(3);
             tabla.addCell("Codigo");
             tabla.addCell("Nombre Categoria");
@@ -182,10 +171,8 @@ public class Reportes {
                     do {
                         tabla.addCell(rs.getString(1));
                         tabla.addCell(rs.getString(2));
-                        tabla.addCell(rs.getString(3));
-                        
+                        tabla.addCell(rs.getString(3));                        
                     } while (rs.next());
-
                 }
                 documento.add(tabla);
                 JOptionPane.showMessageDialog(null, "Reporte Creado");
@@ -193,7 +180,6 @@ public class Reportes {
                 System.out.println("error en " + e);
             }
             documento.close();
-
         } catch (DocumentException e) {
             System.out.println("error 1 en " + e);
         } catch (FileNotFoundException ex) {
@@ -201,7 +187,6 @@ public class Reportes {
         } catch (IOException ex) {
             System.out.println("error 3 en " + ex);
         }
-
     }
     public void reportesVentas() {
         Document documento = new Document();
@@ -225,7 +210,6 @@ public class Reportes {
             documento.add(header);
             documento.add(parrafo);
              float[]columnwidths={3f,9f,4f,5f,3f};
-
             PdfPTable tabla = new PdfPTable(5);
             tabla.addCell("Codigo");
             tabla.addCell("Cliente");
@@ -242,10 +226,8 @@ public class Reportes {
                         tabla.addCell(rs.getString(2));
                         tabla.addCell(rs.getString(3));
                         tabla.addCell(rs.getString(4));
-                        tabla.addCell(rs.getString(5));
-                        
+                        tabla.addCell(rs.getString(5));                        
                     } while (rs.next());
-
                 }
                 documento.add(tabla);
                 JOptionPane.showMessageDialog(null, "Reporte Creado");
@@ -253,7 +235,6 @@ public class Reportes {
                 System.out.println("error en " + e);
             }
             documento.close();
-
         } catch (DocumentException e) {
             System.out.println("error 1 en " + e);
         } catch (FileNotFoundException ex) {
@@ -261,6 +242,5 @@ public class Reportes {
         } catch (IOException ex) {
             System.out.println("error 3 en " + ex);
         }
-
     }
 }

@@ -246,11 +246,7 @@ public class PdfReparacion {
                     this.descripcion = rs.getString("descripcion");
                     this.total = String.valueOf((long) rs.getDouble("precioReparacion"));
                     int idCliente = rs.getInt("idCliente");
-
-                    // cargar datos del cliente
                     datosCliente(idCliente);
-
-                    // generar el PDF con la info cargada
                     generarReparacionPDF();
                 } else {
                     JOptionPane.showMessageDialog(null, "No se encontró la reparación con ID: " + idReparacion);

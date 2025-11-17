@@ -1,5 +1,4 @@
 package modelo;
-
 public class DetalleVenta {
     private int idDetalleVenta;
     private int idCabeceraVenta;
@@ -20,13 +19,13 @@ public class DetalleVenta {
         this.cantidad=0;
         this.precioUnitario=0.0;
         this.subTotal=0.0;
-        this.descuento=0.0;
+        this.descuento=0.0; 
         this.iva=0.0;
         this.totalPagar=0.0;
         this.estado=0;        
     }
-
-    public DetalleVenta(int idDetalleVenta, int idCabeceraVenta, int idProducto, String nombre, int cantidad, double precioUnitario, double subTotal, double descuento, double iva, double totalPagar, int estado) {
+    public DetalleVenta(int idDetalleVenta, int idCabeceraVenta, int idProducto, String nombre,
+            int cantidad, double precioUnitario, double subTotal, double descuento, double iva, double totalPagar, int estado) {
         this.idDetalleVenta = idDetalleVenta;
         this.idCabeceraVenta = idCabeceraVenta;
         this.idProducto = idProducto;

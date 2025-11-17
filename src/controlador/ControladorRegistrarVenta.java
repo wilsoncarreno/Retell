@@ -1,7 +1,4 @@
-
 package controlador;
-
-
 import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,15 +6,9 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import modelo.CabeceraVenta;
 import modelo.DetalleVenta;
-
-
-
 public class ControladorRegistrarVenta {
-    //ultimo id de la cabecera
     public static int idcabeceraRegistrada;
     java.math.BigDecimal iDColVar;
-    
-    //metodo para guardar la cabecera de venta
     public boolean guardar(CabeceraVenta objeto){
         boolean respuesta = false;
         Connection cn = conexion.Conexion.conectar();
@@ -50,7 +41,9 @@ public class ControladorRegistrarVenta {
         boolean respuesta=false;
         Connection cn=conexion.Conexion.conectar();
         try{
-            PreparedStatement consulta=cn.prepareStatement("INSERT INTO tb_detalle_venta (idDetalleVenta, idCabeceraVenta, idProducto, cantidad, precioUnitario, subtotal, descuento,iva,totalPagar,estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            PreparedStatement consulta=cn.prepareStatement("INSERT INTO tb_detalle_venta"
+                    + " (idDetalleVenta, idCabeceraVenta, idProducto, cantidad, precioUnitario, subtotal,"
+                    + " descuento,iva,totalPagar,estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             consulta.setInt(1, 0);//idCliente
             consulta.setInt(2,idcabeceraRegistrada);
             consulta.setInt(3,objeto.getIdProducto());

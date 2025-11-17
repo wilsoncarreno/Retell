@@ -3,14 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/conexion/Conexion.java</file>
+            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/modelo/Cliente.java</file>
             <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/vista/FrmMenu.java</file>
-            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/vista/InterReparacion.java</file>
-            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/vista/InterGestionarReparacion.java</file>
-            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/vista/InterGestionarClientes.java</file>
-            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/vista/InterFacturacion.java</file>
-            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/controlador/PdfReparacion.java</file>
-            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/controlador/ControladorReparacion.java</file>
-            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/vista/FrmLogin.java</file>
+            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/modelo/DetalleVenta.java</file>
+            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/modelo/Producto.java</file>
+            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/modelo/Reparacion.java</file>
+            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/modelo/Usuario.java</file>
+            <file>file:/C:/Users/DELL/OneDrive/Documentos/NetBeansProjects/Retell/src/vista/InterCategoria.java</file>
         </group>
     </open-files>
 </project-private>
